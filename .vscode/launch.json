@@ -1,0 +1,88 @@
+{
+  "inputs": [
+    {
+      "id": "UI5Version",
+      "type": "command",
+      "command": "sap.ux.appGenerator.ui5Version"
+    }
+  ],
+  "configurations": [
+    {
+      "name": "Start com.flexso.htf2022",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npx",
+      "cwd": "${workspaceFolder}/com.flexso.htf2022",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "'test/flpSandbox.html#app-tile'"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "DEBUG": "--inspect",
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/tosohiot/com.flexso.htf2022\"}"
+      }
+    },
+    {
+      "name": "Start com.flexso.htf2022 Mock",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/com.flexso.htf2022",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "'test/flpSandboxMockServer.html#app-tile'"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/tosohiot/com.flexso.htf2022\"}"
+      }
+    },
+    {
+      "name": "Start com.flexso.htf2022 Local",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/com.flexso.htf2022",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--config",
+        "./ui5-local.yaml",
+        "--open",
+        "'test/flpSandbox.html#app-tile'"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "port": 9229,
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/tosohiot/com.flexso.htf2022\"}"
+      }
+    }
+  ],
+  "compounds": [],
+  "version": "0.2.0"
+}

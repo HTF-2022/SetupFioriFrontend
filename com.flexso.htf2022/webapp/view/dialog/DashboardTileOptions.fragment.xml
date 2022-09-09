@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ActionSheet title="Choose Your Action" showCancelButton="true" placement="Bottom">
+		<Button text="Default" icon="sap-icon://area-chart" press=".actionSelected('DEF')"/>
+		<Button text="Normal" icon="sap-icon://pie-chart" press=".actionSelected('NORMAL')"/>
+		<Button text="Key" icon="sap-icon://pie-chart" press=".actionSelected('KEY')"/>
+		<!--<Button text="Token" icon="sap-icon://pie-chart" press=".actionSelected('TOKEN')"/>-->
+		<Button text="Test" icon="sap-icon://pie-chart" press=".actionSelected('TEST')"/>
+	</ActionSheet>
+</core:FragmentDefinition>

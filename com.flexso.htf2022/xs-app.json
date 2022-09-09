@@ -1,0 +1,7 @@
+{
+	"welcomeFile": "/com.flexso.htf2022/webapp/index.html",
+	"logout": {
+		"logoutEndpoint": "/do/logout"
+	},
+	"routes": []
+}

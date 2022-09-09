@@ -1,0 +1,24 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "none",
+  "routes": [
+    {
+		"source": "^/resources/sap/ui/iot/(.*)$",
+		"destination": "IOTAS_CONTROLS",
+		"target": "/sap/ui/iot/$1",
+		"csrfProtection": false
+	},
+	{
+      "source": "^/resources/(.*)$",
+      "destination": "sapui5",
+      "target": "$1",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/(.*)$",
+      "target": "$1",
+      "localDir": "../com.flexso.htf2022/webapp",
+      "cacheControl": "no-cache"
+    }
+  ]
+}

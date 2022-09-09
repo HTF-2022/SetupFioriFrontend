@@ -1,0 +1,26 @@
+<mvc:View controllerName="com.flexso.htf2022.controller.ButtonAnalysisPage" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:iot="sap.ui.iot.controls" xmlns:iotele="sap.ui.iot.elements" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core" displayBlock="true">
+	<Page title="{i18n>analysispage}" showNavButton="true" navButtonPress="handleNavBackPress" enableScrolling="false">
+		<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height='100%' width="100%" vizType='line'>
+			<viz:dataset>
+				<viz.data:FlattenedDataset data="{db>/Thing/Button1/Measures}">
+					<viz.data:dimensions>
+						<viz.data:DimensionDefinition name="MeasureDate" value="{timestamp}"/>
+					</viz.data:dimensions>
+					<viz.data:measures>
+						<viz.data:MeasureDefinition name="Key" value="{MM_PSET_KeyCounter}"/>
+						<viz.data:MeasureDefinition name="Normal" value="{MM_PSET_NormalCounter}"/>
+						<viz.data:MeasureDefinition name="Test" value="{MM_PSET_TestCounter}"/>
+						<viz.data:MeasureDefinition name="Total" value="{MM_PSET_TotalCounter}"/>
+					</viz.data:measures>
+				</viz.data:FlattenedDataset>
+			</viz:dataset>
+			<viz:feeds>
+				<viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Key,Normal,Test,Total"/>
+				<viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="MeasureDate"/>
+			</viz:feeds>
+		</viz:VizFrame>
+	</Page>
+</mvc:View>

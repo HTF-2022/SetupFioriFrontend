@@ -1,0 +1,95 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:iot="sap.ui.iot.controls" xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:l="sap.ui.layout"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:iotele="sap.ui.iot.elements" xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:tnt="sap.tnt"
+	xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:mc="sap.suite.ui.microchart"
+	controllerName="com.flexso.htf2022.controller.LandingPage" displayBlock="true">
+	<App id="app" backgroundImage="images/tosoh_bkg.png">
+		<Page showHeader="false">
+			<content>
+				<Toolbar design="Transparent" style="Clear" height="80px" class="sapUiSmallMarginTop">
+					<Image src="images/tosoh_logo.png" width="50px" class="sapUiSmallMarginTop"/>
+					<ToolbarSpacer/>
+					<Text text="{user>/User/personName/givenName} {user>/User/personName/familyName}" class="sapUiSmallMarginTop sapUiSmallMarginEnd fs20"/>
+					<f:Avatar src="images/mathias.jpeg" displaySize="XS" class="sapUiSmallMarginTop sapUiSmallMarginEnd borderAvatar"/>
+				</Toolbar>
+				<Panel id="panelForGridList" backgroundDesign="Transparent">
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Title text="Welcome, here are your machines"/>
+                            <!--<Title text="Welcome {user>/User/personName/formOfAddressDescription} {user>/User/personName/familyName}, here are your coffee machines"/>-->
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<HBox width="100%">
+							<items>
+								<VBox height="auto" width="25%" direction="Column">
+									<items>
+										<SearchField width="100%" liveChange="onThingSearch" search="onThingSearch"/>
+										<List id="thingList" headerText="Your machines" selectionChange="zoomToMap" mode="SingleSelectMaster"
+											items="{path:'/Things',parameters:{expand:' DYN_ENT_com_sap_appiot_eventtypes__StandardEventType,DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Error,DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_BASIC,DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Masterdata,DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Error'}}"
+											backgroundDesign="Transparent">
+											<CustomListItem>
+												<HBox>
+													<!--<core:Icon size="2rem" src="sap-icon://attachment-photo" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>-->
+													<Image src="{thingModel>thingImg}" width="125px" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+													<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+														<Label text="{ThingDescription} {DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Masterdata/MM_PSET_Masterdata.LocationAtCustomer}"/>
+														<Label text="Thing id: {AlternateId}"/>
+														<!--<Label text="State: {thingModel>thingStatus}" class="white"/>-->
+														<m:HBox>
+															<tnt:InfoLabel class="sapUiTinyMarginEnd"
+																visible="{= ${DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_BASIC/MM_PSET_BASIC.Active} !== null ? true : false}"
+																text="{path: 'DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_BASIC/MM_PSET_BASIC.Active', formatter: '.formatter.deviceStatus'}"
+																displayOnly="true"
+																colorScheme="{path: 'DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_BASIC/MM_PSET_BASIC.Active', formatter: '.formatter.deviceStatusColor'}"/>
+															<tnt:InfoLabel visible="{= ${DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Error/MM_PSET_Error.ErrorStatus}}" text="{i18n>errorStatusTrue}" displayOnly="true" colorScheme="1"/>
+														</m:HBox>
+													</VBox>
+												</HBox>
+											</CustomListItem>
+										</List>
+									</items>
+								</VBox>
+								<VBox width="5%"/>
+								<VBox width="75%">
+									<items>
+										<Panel height="500px" backgroundDesign="Transparent">
+											<!--<iot:IoTMap id="idMap"
+												things="{path:'/Things',parameters:{expand:' DYN_ENT_com_sap_appiot_eventtypes__StandardEventType,DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Error,DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_BASIC,DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Masterdata'}}">
+												<iot:things>
+													<iotele:IoTMapElement latitude="{Latitude}" longitude="{Longitude}" thingid="{ThingId}">
+														<iotele:thingcard>
+															<iotele:IoTThingCardElement
+																thingCardImage="{ThingId} {DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Masterdata/MM_PSET_Masterdata.LocationAtCustomer}"
+																MultiThingCardHeaderPosition1="{ThingDescription}" MultiThingCardHeaderPosition2="{AlternateId}" SingleThingCardContactsVisible="false"
+																SingleThingCardEventsVisible="false" SingleThingCardHeaderPosition1="{ThingDescription}"
+																SingleThingCardHeaderPosition2="{DYN_ENT_iotae_flexso_be_miko_piloot__MM_PSET_Masterdata/MM_PSET_Masterdata.LocationAtCustomer}"
+																SingleThingCardHeaderPosition3="{AlternateId}" SingleThingCardFooterVisible="false" MultiThingCardFooterVisible="false"
+																singleThingCardTitle="Thing Detail" multiThingCardTitle="Thing Overview" multiThingCardRowSelect="oMultiRowSelect"
+																singleThingCardHeaderSelect="oSingleHeaderSelect"/>
+														</iotele:thingcard>
+													</iotele:IoTMapElement>
+												</iot:things>
+											</iot:IoTMap>
+											<iot:IoTChart id="idChart" height="auto" noOfHours="24" isSliderVisible="true" visible="false"></iot:IoTChart>-->
+										</Panel>
+										<FlexBox height="50px" alignItems="Start" justifyContent="End">
+											<items>
+												<SegmentedButton selectedKey="competitor" class="sapUiSmallMarginBottom">
+													<items>
+														<SegmentedButtonItem icon="sap-icon://map" press="switchMapChart" key="map" class="whitebg"/>
+														<SegmentedButtonItem icon="sap-icon://line-chart" press="switchMapChart" key="chart" class="whitebg"/>
+													</items>
+												</SegmentedButton>
+											</items>
+										</FlexBox>
+									</items>
+								</VBox>
+							</items>
+						</HBox>
+					</content>
+				</Panel>
+			</content>
+		</Page>
+	</App>
+</mvc:View>

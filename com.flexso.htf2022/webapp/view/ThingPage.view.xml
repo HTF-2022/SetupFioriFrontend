@@ -1,0 +1,121 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns:iot="sap.ui.iot.controls" xmlns:m="sap.m"
+	xmlns:core="sap.ui.core" xmlns:suite="sap.suite.ui.commons" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:l="sap.ui.layout"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:iotele="sap.ui.iot.elements" xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="com.flexso.htf2022.controller.ThingPage"
+	displayBlock="true" xmlns:mc="sap.suite.ui.microchart" xmlns:micro="sap.suite.ui.microchart">
+	<App id="app" backgroundImage="images/miko_black_bg.jpg">
+		<Page showHeader="false">
+			<content>
+				<Toolbar design="Transparent" style="Clear" height="80px" class="sapUiSmallMarginTop">
+					<Image src="images/miko_logo.png" width="80px" class="sapUiSmallMarginTop"/>
+					<ToolbarSpacer/>
+					<!--<Text text="{path: 'default>/DateTime', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/YYYY HH:mm:ss' , UTC:false}}"-->
+					<!--	class="sapUiSmallMarginTop sapUiSmallMarginEnd helvetica fs20 white"/>-->
+					<Text text="{user>/User/personName/givenName} {user>/User/personName/familyName}" class="sapUiSmallMarginTop sapUiSmallMarginEnd fs20 white"/>
+					<!--<f:Avatar src="images/dries.jpg" displaySize="XS" class="sapUiSmallMarginTop sapUiSmallMarginEnd borderAvatar"/>-->
+				</Toolbar>
+				<Panel id="panelForGridList">
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Title text="{db>/Thing/ThingDescription} {db>/Thing/MasterData/LocationAtCustomer}" class="white"/>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<f:GridList id="gridList" headerText="{i18n>selectCoffeeTile}" items="{db>/Thing/Buttons}" class="white">
+							<f:customLayout>
+								<grid:GridBoxLayout boxMinWidth="25rem"/>
+							</f:customLayout>
+							<CustomListItem press="onPressTileRoute" visible="{= ${db>Name} !== '' }" class="gridListItem">
+								<VBox height="100%">
+									<layoutData>
+										<FlexItemData growFactor="1" shrinkFactor="0"/>
+									</layoutData>
+									<!--<Link text="{thingModel>type}" wrapping="true" class="white bold fs18" press="onPressTileRoute"/>-->
+									<HBox class="sapUiTinyMargin sapUiNoMarginBottom" height="100%">
+										<VBox height="100%">
+											<layoutData>
+												<FlexItemData growFactor="4" shrinkFactor="0"/>
+											</layoutData>
+											<Link text="{path: 'db>Name', formatter: '.formatter.coffeeType'}" press=".onButtonAnalysis" class="white bold fs20 sapUiNoMarginBottom"
+												emphasized="true"/>
+											<!--<Label text="{path: 'db>Name', formatter: '.formatter.coffeeType'}" class="white bold fs20 sapUiNoMarginBottom"></Label>-->
+											<Label text="{path: 'db>MeasureDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/YYYY' , UTC:true}}"
+												class="white fs14"></Label>
+										</VBox>
+										<Button class="sapUiNoMarginTop sapUiNoMarginBottom" text="{path: 'db>Visual', formatter: '.formatter.coffeeType'}"
+											icon="sap-icon://arrow-down" press=".changeTileChart"/>
+									</HBox>
+									<HBox class="sapUiSmallMargin white" height="100%">
+										<VBox visible="{= ${db>Visual} === 'DEF' }" height="100%">
+											<NumericContent value="{path: 'db>MM_PSET_TotalCounter'}" visible="{= ${db>Visual} === 'DEF' }" scale="" indicator="None" class="white"
+												truncateValueTo="6"/>
+											<layoutData>
+												<FlexItemData growFactor="4" shrinkFactor="0"/>
+											</layoutData>
+											<mc:StackedBarMicroChart visible="{= ${db>Visual} === 'DEF' }" size="L" precision="0" class="sapUiSmallMargin">
+												<mc:bars>
+													<mc:StackedBarMicroChartBar value="{path: 'db>MM_PSET_NormalCounter'}"/>
+													<mc:StackedBarMicroChartBar value="{path: 'db>MM_PSET_KeyCounter'}"/>
+													<mc:StackedBarMicroChartBar value="{path: 'db>MM_PSET_TestCounter'}"/>
+													<mc:StackedBarMicroChartBar value="{path: 'db>MM_PSET_TokenCounter'}"/>
+												</mc:bars>
+											</mc:StackedBarMicroChart>
+											<!--<micro:ComparisonMicroChart scale="" size="Responsive" view="Responsive" visible="{= ${db>Visual} === 'DEF' }">-->
+											<!--	<micro:data>-->
+											<!--		<micro:ComparisonMicroChartData title="Normal" value="{path: 'db>MM_PSET_NormalCounter'}"-->
+											<!--			color="{= ${db>MM_PSET_NormalCounter} >= (${db>MM_PSET_TotalCounter}) * 0.1 ? 'Good' : 'Error'}"/>-->
+											<!--		<micro:ComparisonMicroChartData title="Key" value="{path: 'db>MM_PSET_KeyCounter'}"-->
+											<!--			color="{= ${db>MM_PSET_KeyCounter} >= (${db>MM_PSET_TotalCounter}) * 0.1 ? 'Good' : 'Error'}"/>-->
+											<!--		<micro:ComparisonMicroChartData title="Test" value="{path: 'db>MM_PSET_TestCounter'}"-->
+											<!--			color="{= ${db>MM_PSET_TestCounter} >= (${db>MM_PSET_TotalCounter}) * 0.1 ? 'Good' : 'Error'}"/>-->
+											<!--		<micro:ComparisonMicroChartData title="Token" value="{path: 'db>MM_PSET_TokenCounter'}"-->
+											<!--			color="{= ${db>MM_PSET_TokenCounter} >= (${db>MM_PSET_TotalCounter}) * 0.1 ? 'Good' : 'Error'}"/>-->
+											<!--	</micro:data>-->
+											<!--</micro:ComparisonMicroChart>-->
+										</VBox>
+										<VBox height="100%" visible="{= ${db>Visual} !== 'DEF' }">
+											<layoutData>
+												<FlexItemData growFactor="4" shrinkFactor="0"/>
+											</layoutData>
+											<HBox>
+												<NumericContent value="{path: 'db>MM_PSET_NormalCounter'}" visible="{= ${db>Visual} === 'NORMAL' }" scale="" indicator="None"
+													class="sapUiSmallMargin white sapUiNoMarginBegin" truncateValueTo="6"/>
+												<NumericContent value="{path: 'db>MM_PSET_KeyCounter'}" visible="{= ${db>Visual} === 'KEY' }" scale="" indicator="None"
+													class="sapUiSmallMargin white sapUiNoMarginBegin" truncateValueTo="6"/>
+												<!--<NumericContent value="{path: 'db>MM_PSET_TokenCounter'}" visible="{= ${db>Visual} === 'TOKEN' }" scale="" indicator="None"-->
+												<!--	class="sapUiSmallMargin white sapUiNoMarginBegin" truncateValueTo="6"/>-->
+												<NumericContent value="{path: 'db>MM_PSET_TestCounter'}" visible="{= ${db>Visual} === 'TEST' }" scale="" indicator="None"
+													class="sapUiSmallMargin white sapUiNoMarginBegin" truncateValueTo="6"/>
+												<layoutData>
+													<FlexItemData growFactor="4"/>
+												</layoutData>
+												<micro:HarveyBallMicroChart size="Responsive" total="{db>MM_PSET_TotalCounter}" totalScale="Mrd" visible="{= ${db>Visual} === 'NORMAL' }">
+													<micro:items>
+														<micro:HarveyBallMicroChartItem fraction="{path: 'db>MM_PSET_NormalCounter'}"
+															color="{= ((${db>MM_PSET_NormalCounter} / ${db>MM_PSET_TotalCounter}) * 100) >= 50 ? 'Good' : 'Error' }" fractionScale="Cups"/>
+													</micro:items>
+												</micro:HarveyBallMicroChart>
+												<micro:HarveyBallMicroChart size="L" total="{db>MM_PSET_TotalCounter}" totalScale="Mrd" visible="{= ${db>Visual} === 'KEY' }">
+													<micro:items>
+														<micro:HarveyBallMicroChartItem fraction="{path: 'db>MM_PSET_KeyCounter'}"
+															color="{= ((${db>MM_PSET_NormalCounter} / ${db>MM_PSET_TotalCounter}) * 100) >= 50 ? 'Good' : 'Error' }" fractionScale="Cups"/>
+													</micro:items>
+												</micro:HarveyBallMicroChart>
+												<micro:HarveyBallMicroChart size="L" total="{db>MM_PSET_TotalCounter}" totalScale="Mrd" visible="{= ${db>Visual} === 'TEST' }">
+													<micro:items>
+														<micro:HarveyBallMicroChartItem fraction="{path: 'db>MM_PSET_TestCounter'}"
+															color="{= ((${db>MM_PSET_NormalCounter} / ${db>MM_PSET_TotalCounter}) * 100) >= 50 ? 'Good' : 'Error' }" fractionScale="Cups"/>
+													</micro:items>
+												</micro:HarveyBallMicroChart>
+											</HBox>
+										</VBox>
+									</HBox>
+								</VBox>
+							</CustomListItem>
+						</f:GridList>
+					</content>
+				</Panel>
+			</content>
+		</Page>
+	</App>
+</mvc:View>

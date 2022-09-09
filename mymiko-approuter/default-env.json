@@ -1,0 +1,38 @@
+{
+  "destinations": [
+    {
+      "name": "sapui5",
+      "url": "https://ui5.sap.com"
+    },
+    {
+      "name": "IOTAS_CONTROLS",
+      "url": "https://sapuiiot.cfapps.eu10.hana.ondemand.com"
+    }
+  ],
+  "VCAP_SERVICES": {
+    "xsuaa": [
+      {
+        "name": "l-uaa-service",
+        "label": "xsuaa",
+        "tags": ["xsuaa"],
+        "credentials": {
+          "apiurl": "https://api.authentication.us10.hana.ondemand.com",
+          "clientid": "sb-na-72dea711-1bca-4564-898e-96a0e3c04f08!t95680",
+          "clientsecret": "dXxyENyWtvknYwdIoshb9bA0yT8=",
+          "credential-type": "instance-secret",
+          "identityzone": "fb65b981trial",
+          "identityzoneid": "1e450854-3b82-4556-8ddd-ccfe91942de3",
+          "sburl": "https://internal-xsuaa.authentication.us10.hana.ondemand.com",
+          "subaccountid": "1e450854-3b82-4556-8ddd-ccfe91942de3",
+          "tenantid": "1e450854-3b82-4556-8ddd-ccfe91942de3",
+          "tenantmode": "shared",
+          "uaadomain": "authentication.us10.hana.ondemand.com",
+          "url": "https://fb65b981trial.authentication.us10.hana.ondemand.com",
+          "verificationkey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArD6i4N4uPs6+DsObUb2u\nErgfuxABQcrsHwjO0pRSsTnQXW3vCwUvfUTw74S8EfT+5TLZo+L5DzR4htAIrof0\nxYaG/jB4R/cVpKN6AU7RFpNC+kbv7JILweTGcWtf9RMocihh6zxg60SwgsDR1xC6\nSYoihZoEZmZENy6ReuxIIcY4TdzmXdafSmjSRssE5Trfs6ImKDZ1mFV6Ua2ri82S\naWIXTDUss8wC0RldyQ0EejYz5PRE8fSUQ2TSkFeUzs+haBQ9bbMNzTm3rD0x8cod\n9isAmSfhN/HXuBBioLBtMQFePOB7iwFuJyO12nucQRHgOUkoLIFiAZM0JhKUQm0k\nHQIDAQAB\n-----END PUBLIC KEY-----",
+          "xsappname": "na-72dea711-1bca-4564-898e-96a0e3c04f08!t95680",
+          "zoneid": "1e450854-3b82-4556-8ddd-ccfe91942de3"
+        }
+      }
+    ]
+  }
+}

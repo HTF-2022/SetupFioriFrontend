@@ -1,0 +1,109 @@
+_schema-version: "2.1"
+ID: MyMiko
+version: 0.0.1
+modules:
+- name: com.flexso.htf2022
+  type: html5
+  path: com.flexso.htf2022
+  requires:
+  - name: IOTAS-ADVANCEDLIST-THING-ODATA
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: IOTAS-ADVANCEDLIST-THING-ODATA
+      strictSSL: false
+      url: ~{url}
+  - name: IOTAS-DETAILS-THING-ODATA
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: IOTAS-DETAILS-THING-ODATA
+      strictSSL: false
+      url: ~{url}
+  - name: IOTAS-COMPOSITE-EVENTS-ODATA
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: IOTAS-COMPOSITE-EVENTS-ODATA
+      strictSSL: false
+      url: ~{url}
+  - name: IOTAS_CONTROLS
+    group: destinations
+    properties:
+      forwardAuthToken: false
+      name: IOTAS_CONTROLS
+      strictSSL: false
+      url: ~{url}
+  - name: IOTAS
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: IOTAS
+      strictSSL: false
+      url: ~{url}
+  - name: IOTAS-FILEIMAGE
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: IOTAS-FILEIMAGE
+      strictSSL: false
+      url: ~{url}
+  - name: sapui5
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: sapui5
+      strictSSL: false
+      url: ~{url}
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+  build-parameters:
+    builder: grunt
+- name: mymiko-approuter
+  type: approuter.nodejs
+  path: mymiko-approuter
+  requires:
+  - name: MyMiko_html_repo_runtime
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: MyMiko_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: MyMiko_html_repo_host
+    parameters:
+      content-target: true
+resources:
+- name: IOTAS-ADVANCEDLIST-THING-ODATA
+  properties:
+    url: https://advancedlist-thing-sap.cfapps.eu10.hana.ondemand.com
+- name: IOTAS-DETAILS-THING-ODATA
+  properties:
+    url: https://details-thing-sap.cfapps.eu10.hana.ondemand.com
+- name: IOTAS-COMPOSITE-EVENTS-ODATA
+  properties:
+    url: https://composite-events-odata.cfapps.eu10.hana.ondemand.com
+- name: IOTAS_CONTROLS
+  properties:
+    url: https://sapuiiot.cfapps.eu10.hana.ondemand.com
+- name: IOTAS
+  properties:
+    url: https://appiot-mds.cfapps.eu10.hana.ondemand.com
+- name: IOTAS-FILEIMAGE
+  properties:
+    url: https://thingmodeler-fileservice.cfapps.eu10.hana.ondemand.com
+- name: sapui5
+  properties:
+    url: https://sapui5.hana.ondemand.com
+- name: MyMiko_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: MyMiko_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host

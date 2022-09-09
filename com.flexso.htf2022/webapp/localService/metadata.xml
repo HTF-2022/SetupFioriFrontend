@@ -1,0 +1,617 @@
+<?xml version="1.0" ?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+	<edmx:DataServices m:DataServiceVersion="1.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+		xmlns:sap="http://www.sap.com/Protocols/SAPData">
+		<Schema Namespace="com.sap.appiot" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounter" sap:semantics="timeseries">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="MM_TokenCounter.Button1" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button1.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button10" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button10.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button11" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button11.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button12" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button12.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button13" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button13.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button14" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button14.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button15" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button15.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button16" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button16.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button17" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button17.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button18" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button18.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button19" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button19.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button2" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button2.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button20" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button20.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button3" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button3.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button4" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button4.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button5" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button5.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button6" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button6.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button7" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button7.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button8" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button8.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.Button9" Type="Edm.Int32"></Property>
+				<Property Name="MM_TokenCounter.Button9.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TokenCounter.MeasureDate" Type="Edm.DateTime"></Property>
+				<Property Name="MM_TokenCounter.MeasureDate.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<EntityType Name="DYN_ENT_com_sap_appiot_eventtypes__StandardEventType">
+				<Key>
+					<PropertyRef Name="EventType"></PropertyRef>
+				</Key>
+				<Property Name="EventType" Type="Edm.String"></Property>
+				<Property Name="High" Type="Edm.Int32"></Property>
+				<Property Name="Medium" Type="Edm.Int32"></Property>
+				<Property Name="Low" Type="Edm.Int32"></Property>
+			</EntityType>
+			<EntityType Name="HierarchyElement">
+				<Key>
+					<PropertyRef Name="HierarchyId"></PropertyRef>
+					<PropertyRef Name="RootThingId"></PropertyRef>
+				</Key>
+				<Property Name="HierarchyId" Type="Edm.String"></Property>
+				<Property Name="HierarchyName" Type="Edm.String"></Property>
+				<Property Name="RootThingId" Type="Edm.String"></Property>
+				<Property Name="RootThingName" Type="Edm.String"></Property>
+				<Property Name="RootThingType" Type="Edm.String"></Property>
+				<Property Name="RootThingDescription" Type="Edm.String"></Property>
+				<Property Name="RootThingExternalId" Type="Edm.String"></Property>
+				<Property Name="HierarchyDescription" Type="Edm.String"></Property>
+				<Property Name="HierarchyExternalId" Type="Edm.String"></Property>
+			</EntityType>
+			<EntityType Name="Thing">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String" Nullable="false">
+					<Documentation>
+						<LongDescription>Thing unique ID</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ISOCode" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Thing Language code</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingDescription" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Thing description</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingName" Type="Edm.String" Nullable="false">
+					<Documentation>
+						<LongDescription>Thing name</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingExternalId" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Thing external id</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingType" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Thing Type ID associated with the Thing</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ObjectGroup" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Object group used to create the Thing</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="BusinessPartnerName" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Business partner name associated for the Thing</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="BPLandlinePhoneNumber" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Landline phone number of Business partner</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="BPMobilePhoneNumber" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Mobile phone number of Business partner</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingCustomerId" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Business partner ID associated for the Thing</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingRegionDescription" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Region where Thing is located</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingCountryDescription" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Country where the Thing is located</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingCountryId" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Country code where the Thing is located</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingCommunicationData" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Thing address details</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="ThingLocationId" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Thing location ID</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="Latitude" Type="Edm.Double">
+					<Documentation>
+						<LongDescription>Latitude coordinates</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="Longitude" Type="Edm.Double">
+					<Documentation>
+						<LongDescription>Longitude coordinates</LongDescription>
+					</Documentation>
+				</Property>
+				<Property Name="AlternateId" Type="Edm.String">
+					<Documentation>
+						<LongDescription>Thing AlternateId</LongDescription>
+					</Documentation>
+				</Property>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounter"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounter" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounterEntities"></NavigationProperty>
+				<NavigationProperty Name="HierarchyElements" Relationship="com.sap.appiot.HierarchyElements" FromRole="ThingEntities"
+					ToRole="HierarchyElementsEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounter"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounter" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounterEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_com_sap_appiot_eventtypes__StandardEventType"
+					Relationship="com.sap.appiot.DYN_ENT_com_sap_appiot_eventtypes__StandardEventType" FromRole="ThingEntities"
+					ToRole="DYN_ENT_com_sap_appiot_eventtypes__StandardEventTypeEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounter"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounter" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounterEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_General"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_General" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__MM_GeneralEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounter"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounter" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounterEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounter"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounter" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounterEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdata"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdata" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__MM_MasterdataEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounter"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounter" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounterEntities"></NavigationProperty>
+				<NavigationProperty Name="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySet"
+					Relationship="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySet" FromRole="ThingEntities"
+					ToRole="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySetEntities"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounter" sap:semantics="timeseries">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="MM_HappyCounter.Button1" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button1.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button10" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button10.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button11" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button11.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button12" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button12.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button13" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button13.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button14" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button14.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button15" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button15.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button16" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button16.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button17" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button17.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button18" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button18.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button19" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button19.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button2" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button2.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button20" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button20.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button3" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button3.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button4" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button4.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button5" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button5.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button6" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button6.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button7" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button7.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button8" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button8.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.Button9" Type="Edm.Int32"></Property>
+				<Property Name="MM_HappyCounter.Button9.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_HappyCounter.MeasureDate" Type="Edm.DateTime"></Property>
+				<Property Name="MM_HappyCounter.MeasureDate.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounter" sap:semantics="timeseries">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="MM_TestCounter.Button1" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button1.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button10" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button10.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button11" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button11.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button12" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button12.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button13" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button13.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button14" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button14.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button15" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button15.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button16" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button16.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button17" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button17.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button18" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button18.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button19" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button19.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button2" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button2.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button20" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button20.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button3" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button3.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button4" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button4.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button5" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button5.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button6" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button6.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button7" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button7.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button8" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button8.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.Button9" Type="Edm.Int32"></Property>
+				<Property Name="MM_TestCounter.Button9.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TestCounter.MeasureDate" Type="Edm.DateTime"></Property>
+				<Property Name="MM_TestCounter.MeasureDate.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdata">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="MM_Masterdata.EquipmentNumber" Type="Edm.Int32"></Property>
+				<Property Name="MM_Masterdata.EquipmentNumber.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounter" sap:semantics="timeseries">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="MM_KeyCounter.Button1" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button1.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button10" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button10.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button11" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button11.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button12" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button12.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button13" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button13.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button14" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button14.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button15" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button15.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button16" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button16.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button17" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button17.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button18" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button18.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button19" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button19.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button2" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button2.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button20" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button20.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button3" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button3.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button4" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button4.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button5" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button5.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button6" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button6.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button7" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button7.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button8" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button8.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.Button9" Type="Edm.Int32"></Property>
+				<Property Name="MM_KeyCounter.Button9.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_KeyCounter.MeasureDate" Type="Edm.DateTime"></Property>
+				<Property Name="MM_KeyCounter.MeasureDate.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounter" sap:semantics="timeseries">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="MM_NormalCounter.Button1" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button1.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button10" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button10.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button11" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button11.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button12" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button12.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button13" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button13.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button14" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button14.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button15" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button15.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button16" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button16.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button17" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button17.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button18" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button18.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button19" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button19.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button2" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button2.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button20" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button20.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button3" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button3.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button4" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button4.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button5" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button5.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button6" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button6.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button7" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button7.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button8" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button8.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.Button9" Type="Edm.Int32"></Property>
+				<Property Name="MM_NormalCounter.Button9.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_NormalCounter.MeasureDate" Type="Edm.DateTime"></Property>
+				<Property Name="MM_NormalCounter.MeasureDate.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_General" sap:semantics="timeseries">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="MM_General.Active" Type="Edm.Boolean"></Property>
+				<Property Name="MM_General.Active.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_General.ErrorCode" Type="Edm.String"></Property>
+				<Property Name="MM_General.ErrorCode.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_General.MeasureDate" Type="Edm.DateTime"></Property>
+				<Property Name="MM_General.MeasureDate.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_General.SerialNumber" Type="Edm.String"></Property>
+				<Property Name="MM_General.SerialNumber.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_General.Total" Type="Edm.Int32"></Property>
+				<Property Name="MM_General.Total.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySet">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="DefaultImagePropertySet.DefaultImageProperty" Type="Edm.String"></Property>
+				<Property Name="DefaultImagePropertySet.DefaultImageProperty.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<EntityType Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounter" sap:semantics="timeseries">
+				<Key>
+					<PropertyRef Name="ThingId"></PropertyRef>
+				</Key>
+				<Property Name="ThingId" Type="Edm.String"></Property>
+				<Property Name="MM_TotalCounter.Button1" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button1.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button10" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button10.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button11" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button11.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button12" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button12.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button13" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button13.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button14" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button14.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button15" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button15.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button16" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button16.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button17" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button17.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button18" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button18.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button19" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button19.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button2" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button2.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button20" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button20.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button3" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button3.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button4" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button4.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button5" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button5.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button6" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button6.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button7" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button7.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button8" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button8.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.Button9" Type="Edm.Int32"></Property>
+				<Property Name="MM_TotalCounter.Button9.Timestamp" Type="Edm.DateTimeOffset"></Property>
+				<Property Name="MM_TotalCounter.MeasureDate" Type="Edm.DateTime"></Property>
+				<Property Name="MM_TotalCounter.MeasureDate.Timestamp" Type="Edm.DateTimeOffset"></Property>
+			</EntityType>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounter">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounter" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounterEntities"></End>
+			</Association>
+			<Association Name="HierarchyElements">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.HierarchyElement" Multiplicity="*" Role="HierarchyElementsEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounter">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounter" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounterEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_com_sap_appiot_eventtypes__StandardEventType">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_com_sap_appiot_eventtypes__StandardEventType" Multiplicity="1"
+					Role="DYN_ENT_com_sap_appiot_eventtypes__StandardEventTypeEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounter">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounter" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounterEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_General">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_General" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_GeneralEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounter">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounter" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounterEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounter">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounter" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounterEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdata">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdata" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_MasterdataEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounter">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounter" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounterEntities"></End>
+			</Association>
+			<Association Name="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySet">
+				<End Type="com.sap.appiot.Thing" Multiplicity="1" Role="ThingEntities"></End>
+				<End Type="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySet" Multiplicity="1"
+					Role="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySetEntities"></End>
+			</Association>
+			<EntityContainer Name="CompositeThingsAnalytics" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounters"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounter"></EntitySet>
+				<EntitySet Name="DYN_ENT_com_sap_appiot_eventtypes__StandardEventTypes"
+					EntityType="com.sap.appiot.DYN_ENT_com_sap_appiot_eventtypes__StandardEventType"></EntitySet>
+				<EntitySet Name="HierarchyElements" EntityType="com.sap.appiot.HierarchyElement"></EntitySet>
+				<EntitySet Name="Things" EntityType="com.sap.appiot.Thing"></EntitySet>
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounters"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounter"></EntitySet>
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounters"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounter"></EntitySet>
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdatas"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdata"></EntitySet>
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounters"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounter"></EntitySet>
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounters"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounter"></EntitySet>
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_Generals"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_General"></EntitySet>
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySets"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySet"></EntitySet>
+				<EntitySet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounters"
+					EntityType="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounter"></EntitySet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounter"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounter">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounters" Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_NormalCounterEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="HierarchyElements" Association="com.sap.appiot.HierarchyElements">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="HierarchyElements" Role="HierarchyElementsEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounter"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounter">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounters" Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TotalCounterEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_com_sap_appiot_eventtypes__StandardEventType"
+					Association="com.sap.appiot.DYN_ENT_com_sap_appiot_eventtypes__StandardEventType">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_com_sap_appiot_eventtypes__StandardEventTypes" Role="DYN_ENT_com_sap_appiot_eventtypes__StandardEventTypeEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounter"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounter">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounters" Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TokenCounterEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_General"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_General">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__MM_Generals" Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_GeneralEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounter"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounter">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounters" Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_KeyCounterEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounter"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounter">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounters" Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_TestCounterEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdata"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdata">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__MM_Masterdatas" Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_MasterdataEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounter"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounter">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounters" Role="DYN_ENT_iotae_flexso_be_miko_piloot__MM_HappyCounterEntities"></End>
+				</AssociationSet>
+				<AssociationSet Name="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySet"
+					Association="com.sap.appiot.DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySet">
+					<End EntitySet="Things" Role="ThingEntities"></End>
+					<End EntitySet="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySets"
+						Role="DYN_ENT_iotae_flexso_be_miko_piloot__DefaultImagePropertySetEntities"></End>
+				</AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

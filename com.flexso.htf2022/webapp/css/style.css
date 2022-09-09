@@ -1,0 +1,398 @@
+/*START own custom css*/
+.fs14 {
+    font-size: 14px !important;
+}
+
+.fs18 {
+    font-size: 18px !important;
+}
+
+.fs20 {
+    font-size: 20px !important;
+}
+
+.helvetica {
+    font-family: "Helvetica" !important;
+}
+
+.white {
+    color: white !important;
+}
+
+.bold {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+/* Dark transparent background of grid list items*/
+.gridListItem {
+    background-color: rgba(83, 83, 83, 0.5);
+    border: none;
+}
+
+/* Selected color of custom list item*/
+.sapMLIB.sapMLIBSelected {
+	 background-color: rgba(83, 83, 83, 0.5);
+}
+
+/* Dark transparent background of list in landing page*/
+.sapMCLI {
+    background-color: rgba(83, 83, 83, 0.5) !important;
+}
+
+/* Input searhfield*/
+.sapMSFI {
+	color: #FFFFFF;
+}
+/* Searhfield*/
+.sapMSFF {
+    box-sizing: border-box;
+    height: 2.5rem;
+    line-height: 2.375rem;
+    border: 1px solid #bfbfbf;
+    background-color: rgba(83, 83, 83, 0.5) !important;
+    vertical-align: top;
+    width: 100%;
+    position: relative;
+    padding-left: 0.625rem;
+    padding-right: 4.75rem;
+}
+
+/* Thing Card background*/
+.vbi-detail-content {
+	background-color: #000000 !important;
+}
+/* Single thing card title color*/
+.ThingCardHeaderTitle {
+	color: #FFFFFF !important;
+}
+
+/* Single thing card alternate id color*/
+.vbi-detail-content > div > div > div:first-child > li > div > div > div > div:nth-child(2) > div:nth-child(2) > span {
+	color: #FFFFFF !important;
+}
+
+/* Single thing card alternate id color*/
+.vbi-detail-content > div > div > div:first-child > li > div > div > div > div:nth-child(2) > div:nth-child(3) > span {
+	color: gold !important;
+}
+
+/* Multi thinfs card header title*/
+.ThingCardAssetName {
+	color: #FFFFFF !important;
+}
+
+/* Multi thinfs card second line color*/
+.ThingCardAssetId {
+	color: gold !important;
+}
+
+/* Background color chart total */
+.sapMFlexBoxBGSolid, .sapMFlexBoxBGTranslucent {
+	background-color: rgba(83, 83, 83, 0.5) !important;
+}
+
+/* Color text slider left right */
+.sliderWidth.sapMSlider {
+	color: #FFFFFF !important;
+}
+
+.sapMSegB .sapMSegBBtn {
+	background-color: rgba(83, 83, 83, 0.5);
+	color: #FFFFFF !important;
+}
+
+/* Input datetime chart background*/
+.sapMInputBaseContentWrapper {
+	background-color: transparent !important;
+}
+
+/* Input datetime chart */
+.sapMInputBaseInner {
+	color: #FFFFFF !important;
+}
+
+.sapMLabel {
+	color: #FFFFFF !important;
+}
+
+div .sapMIBar > button {
+	visibility: hidden !important;
+}
+
+/* assen text color */
+.axesTexts {
+    fill: #FFFFFF !important;
+}
+
+.legendEntryLabelHighlight {
+	fill: #FFFFFF !important;
+}
+
+.legendEntrySymbol {
+	fill: gold !important;
+}
+
+.highlightedLine {
+	stroke: gold;
+}
+
+.legendEntryLabel {
+	fill: #FFFFFF !important;
+}
+
+.sapMSegB .sapMSegBBtn:hover {
+	background-color: #FFFFFF;
+	color: #000000 !important;
+}
+
+/*END own custom css*/
+
+
+
+
+
+
+/*CSS Maarten*/
+.sapMBtn.sapMBtnInner {
+    background-color: transparent !important;
+    color: #fafafa !important;
+    text-shadow: 0 0 0 0rem #333333;
+}
+
+.sapMBtnInner {
+    background-color: transparent;
+    color: #fafafa;
+    text-shadow: 0 0 0rem #333333;
+}
+
+:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon, :not(.sapMBtnDisabled) .sapMBtnGhost>.sapMBtnIcon {
+    color: #fafafa;
+}
+
+.sapMBtnActive {
+	    background-color: #bfbfbf;
+}
+
+:not(.sapMBtnDisabled)>.sapMBtnInner:hover {
+	    background-color: #bfbfbf;
+}
+
+:not(.sapMBtnDisabled)>.sapMBtnTransparent.sapMBtnActive, :not(.sapMBtnDisabled):hover>.sapMBtnTransparent.sapMBtnActive {
+	background-color: #bfbfbf;
+}
+
+.sapMPopover .sapMPopoverCont {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.sapMBtnIcon {
+    color: #fafafa;
+}
+
+.sapMListHdrText {
+    color: #fafafa;
+}
+
+.sapMNCValue.Neutral {
+    color: #fafafa;
+}
+
+.sapSuiteCpMCChartItem .sapSuiteCpMCChartItemTitle, .sapSuiteCpMCChartItem .sapSuiteCpMCChartItemValue {
+    color: #fafafa;
+}
+
+.sapSuiteCpMCVerticalAlignmentContainer {
+    max-width: 30rem !important;
+}
+
+.sapSuiteRMCCircleBackground {
+    stroke: rgba(0, 0, 0, 0) !important;
+    fill: rgba(0, 0, 0, 0) !important;
+}
+
+/*END CSS Maarten*/
+
+
+
+
+
+
+
+
+
+.customThingList .sapMTB-Transparent-CTX.sapMTB {
+    background: white !important;
+}
+
+.customThingList {
+    left: 1rem;
+    z-index: 5;
+    position: absolute;
+    top: 1rem;
+}
+
+.thingListAssetIcon {
+    margin-top: 0.8rem;
+}
+
+.thingListSeveritySematicRed {
+    background-color: #bb0000;
+    width: 0.375rem;
+    height: 100%;
+    padding-right: 0rem;
+    padding-left: 0rem;
+}
+
+.thingListSeveritySematicOrange {
+    background-color: #e78c07;
+    width: 0.375rem;
+    height: 100%;
+    padding-right: 0rem;
+    padding-left: 0rem;
+}
+
+.thingListSeveritySematicGreen {
+    background-color: #2b7d2b;
+    width: 0.375rem;
+    height: 100%;
+    padding-right: 0rem;
+    padding-left: 0rem;
+}
+
+.thingListSeveritySematicGray {
+    background-color: #d3d7d9;
+    width: 0.375rem;
+    height: 100%;
+    padding-right: 0rem;
+    padding-left: 0rem;
+}
+
+.sapMPopup-CTX .sapMIBar.sapMHeader-CTX {
+    padding-left: 0.25rem;
+    background-color: #e3edf3;
+    font-family: sans-serif, Arial, Helvetica;
+}
+
+.blockHeader {
+    background-color: #f2f2f2 !important;
+    font-weight: bold;
+    font-size: 0.9rem;
+    height: 2rem;
+}
+
+.blockHeader .sapMDLILabel {
+    font-weight: bold;
+    font-size: 0.9rem;
+    height: 0rem;
+    padding-bottom: 3rem;
+}
+
+.blockHeader .sapMDLIValue {
+    font-size: 0.875rem;
+    margin-left: 1.0rem;
+    text-align: right;
+    margin-right: 1.8rem;
+    color: #666666;
+}
+
+.sapUiMedia-Std-Desktop .sapUxAPObjectPageHeaderIdentifier {
+    padding-left: 1rem;
+}
+
+.sapUiMedia-Std-Desktop .sapUxAPObjectPageHeaderContent {
+    padding-left: 1rem;
+}
+
+.sapUiVltTest {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-top: 2.8rem;
+}
+
+.sapMITBHead {
+    font-size: 0.75rem;
+    padding: 0px;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    display: inline-block;
+    margin: 0.25rem 0 0 0;
+    vertical-align: top;
+}
+
+.sapMITBScrollContainer {
+    display: block;
+    margin: 0rem;
+}
+
+.sapMITBContent {
+    padding: 0rem;
+    position: relative;
+}
+
+.sapMITB.sapUiResponsiveContentPadding>.sapMITBContainerContent>.sapMITBContent {
+    padding: 0rem;
+    box-sizing: border-box;
+}
+
+.sapMListTblCell {
+    padding: .875rem .5rem;
+    vertical-align: middle;
+    font-size: 0.875rem;
+}
+
+.headerImage .sapUiIcon:before {
+    color: white;
+}
+
+.sapUxAPObjectPageHeaderStickied .sapUxAPObjectPageHeaderIdentifier .sapUxAPObjectPageHeaderObjectImage {
+    background-color: white;
+    color: #d3d7d9 !important;
+    margin-top: 0rem !important;
+}
+
+.thingPageRedSematic {
+    border-left: #bb0000 solid .5rem !important;
+    padding: 0rem !important;
+}
+
+.thingPageOrangeSematic {
+    border-left: #e78c07 solid .5rem !important;
+    padding: 0rem !important;
+}
+
+.thingPageGreenSematic {
+    border-left: #2b7d2b solid .5rem !important;
+    padding: 0rem !important;
+}
+
+.thingPageGreySematic {
+    border-left: #d3d7d9 solid .5rem !important;
+    padding: 0rem !important;
+}
+
+.numericTextRightAlign {
+    text-align: right !important;
+}
+
+.textCenterAlign {
+    text-align: center !important;
+}
+
+.sapSuiteUiCommonsTimelineItemShellHdr {
+    color: #00679e !important;
+}
+
+.thingListSortButton {
+    left: 7.8rem !important;
+}
+
+.closeButtonOnEventsDialog {
+    padding-right: 0.5rem;
+}
+
+.basicDataMarginTop {
+    margin-top: 1rem;
+}
