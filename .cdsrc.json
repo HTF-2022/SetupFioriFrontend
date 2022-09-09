@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "passport": {
+      "strategy": "mock",
+      "users": {
+        "HTF2022@test.com": {
+          "password": "password",
+          "ID": "HTF2022@test.com",
+          "roles": ["authenticated-user", "HTF2022_Viewer"]
+        }
+      }
+    }
+  }
+}

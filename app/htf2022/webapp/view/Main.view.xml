@@ -1,0 +1,84 @@
+<mvc:View
+		controllerName="com.flexso.htf2022.controller.Main"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core" 
+		xmlns:m="sap.m"
+		xmlns="sap.f"
+		xmlns:layout="sap.ui.layout"
+		xmlns:c="sap.ui.comp.smartmicrochart"
+		height="100%">
+		<DynamicPage id="dynamicPageId">
+			<!-- DynamicPage Title -->
+			<title>
+				<DynamicPageTitle>
+					<heading>
+						<m:HBox alignContent="Center">
+						<m:Title text="HTF 2022"/>
+						<!-- <Image src="https://cdn-icons-png.flaticon.com/128/2991/2991231.png" width="20px" height="20px"/> -->
+						</m:HBox>
+					</heading>
+					<actions>
+						<m:Button
+								icon="sap-icon://action"
+								type="Transparent"/>
+					</actions>
+				</DynamicPageTitle>
+			</title>
+			<!-- DynamicPage Header -->
+			<header>
+				<DynamicPageHeader pinnable="true">
+					<!-- <core:HTML id="html"></core:HTML>			 -->
+				</DynamicPageHeader>
+			</header>
+			<content>
+				<!-- <m:Panel
+					headerText="Stock price value and target value"
+					class="sapUiSmallMarginBottom">
+					<c:SmartLineMicroChart
+						id="idLineChart"
+						entitySet="FlowStream"
+						chartBindingPath="/FlowStream" />
+					<m:Label
+						text="Title association:"
+						design="Bold"
+						class="sapUiSmallMarginTop" />
+					<m:Label id="chartTitle" />
+				</m:Panel> -->
+				<m:Table id="idProductsTable"
+						sticky="HeaderToolbar,ColumnHeaders"
+						inset="false"
+						items="{
+							path: '/FlowStream',
+							sorter: {
+								path: 'datetime'
+							}
+						}"
+					   class="sapFDynamicPageAlignContent"
+					   width="auto">
+					<m:headerToolbar>
+						<m:Toolbar>
+							<m:Title text="Flows" level="H2"/>
+						</m:Toolbar>
+					</m:headerToolbar>
+					<m:columns>
+						<m:Column>
+							<m:Text text="Time" />
+						</m:Column>
+						<m:Column>
+							<m:Text text="Flow l/h" />
+						</m:Column>
+					</m:columns>
+					<m:items>
+						<m:ColumnListItem type="Active" press="setMap">
+							<m:cells>
+								<m:ObjectIdentifier
+										title="{datetime}" />
+								<m:Text
+										text="{flow}" />
+							</m:cells>
+						</m:ColumnListItem>
+					</m:items>
+				</m:Table>
+			</content>
+		</DynamicPage>
+</mvc:View>
