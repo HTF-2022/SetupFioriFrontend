@@ -12,6 +12,30 @@ sap.ui.define([
             };
             BaseState.call(this);
         },
+        getFlowStreams: function(){
+            return new Promise((resolve, reject) => {
+				this.getService().getFlowStreams().then((oResult)=>{
+                    this.addNewFlows(oResult);
+                    resolve(oResult);
+                }).catch((oError)=>{
+                    reject(oError);
+                });
+			});
+        },
+        addNewFlows: function(aNewFlows){
+            let aFlows = this.getProperty("flow").FlowStreams;
+          /*  if(aNewFlows){
+                aNewFlows.map((oFlow)=>{
+                    oFlow.flow = parseFloat(oFlow.flow);
+                });
+            } */
+            if(aFlows){
+                const aAllFlows = aFlows.concat(aNewFlows);
+                this.updateFlow({FlowStreams: aAllFlows});
+            } else {
+                this.updateFlow({FlowStreams: aNewFlows}); // initial fill
+            }
+        },
         updateFlow: function (oFlow) {
             this.getProperty("flow").updateFlow(oFlow);
             this.updateModel();

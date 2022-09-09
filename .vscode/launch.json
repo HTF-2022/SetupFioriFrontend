@@ -8,6 +8,9 @@
       "command": "cds run --with-mocks --in-memory?",
       "name": "cds run",
       "request": "launch",
+      "env": {
+        "debug_session": "true"
+      },
       "type": "node-terminal",
       "skipFiles": [ "<node_internals>/**" ]
     }

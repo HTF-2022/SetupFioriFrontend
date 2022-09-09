@@ -5,7 +5,7 @@
     {
       "source": "^/srv/(.*)",
       "target": "$1",
-      "destination": "srv-api",
+      "destination": "HTF2022",
       "authenticationType": "xsuaa",
       "csrfProtection": false
     },

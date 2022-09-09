@@ -31,26 +31,27 @@
 				</DynamicPageHeader>
 			</header>
 			<content>
-				<!-- <m:Panel
+				<m:Panel
 					headerText="Stock price value and target value"
 					class="sapUiSmallMarginBottom">
 					<c:SmartLineMicroChart
 						id="idLineChart"
 						entitySet="FlowStream"
-						chartBindingPath="/FlowStream" />
+			
+						width="100%"/>
 					<m:Label
 						text="Title association:"
 						design="Bold"
 						class="sapUiSmallMarginTop" />
 					<m:Label id="chartTitle" />
-				</m:Panel> -->
-				<m:Table id="idProductsTable"
+				</m:Panel>
+				<!-- <m:Table id="idProductsTable"
 						sticky="HeaderToolbar,ColumnHeaders"
 						inset="false"
 						items="{
-							path: '/FlowStream',
+							path: 'reg>/flow/FlowStreams',
 							sorter: {
-								path: 'datetime'
+								path: 'reg/datetime'
 							}
 						}"
 					   class="sapFDynamicPageAlignContent"
@@ -72,13 +73,13 @@
 						<m:ColumnListItem type="Active" press="setMap">
 							<m:cells>
 								<m:ObjectIdentifier
-										title="{datetime}" />
+										title="{reg>datetime}" />
 								<m:Text
-										text="{flow}" />
+										text="{reg>flow}" />
 							</m:cells>
 						</m:ColumnListItem>
 					</m:items>
-				</m:Table>
+				</m:Table> -->
 			</content>
 		</DynamicPage>
 </mvc:View>

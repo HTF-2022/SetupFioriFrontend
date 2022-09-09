@@ -18,6 +18,11 @@ sap.ui.define([
             //         axios.defaults.headers.common[header] = this.model.getHttpHeaders()[header];
             //     }
             // }
+        },
+        getFlowStreams: function () {
+            return axios.get(`${this.serviceUrl}\/FlowStream`).then((oResult) => {
+                return oResult.data.d.results;
+            });
         }
     });
     return FlowService;
