@@ -19,9 +19,9 @@ sap.ui.define([
 
 			const oFlowModel = new ODataModel("v2/service/htf2022/");
 			const oChart = this.getView().byId("idLineChart");
-			const oChartTitle = this.getView().byId("chartTitle");
-			oChart.setChartTitle(oChartTitle);
 			oChart.setModel(oFlowModel);
+			const oChart2 = this.getView().byId("idLineChart2");
+			oChart2.setModel(oFlowModel);
 		}
 
 	});

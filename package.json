@@ -15,6 +15,7 @@
     "sqlite3": "^5.0.4"
   },
   "scripts": {
+    "local:db": "cds deploy --to sqlite --no-save",
     "start": "cds run"
   },
   "eslintConfig": {

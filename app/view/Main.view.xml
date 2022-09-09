@@ -31,20 +31,28 @@
 				</DynamicPageHeader>
 			</header>
 			<content>
-				<m:Panel
-					headerText="Stock price value and target value"
-					class="sapUiSmallMarginBottom">
-					<c:SmartLineMicroChart
-						id="idLineChart"
-						entitySet="FlowStream"
-			
-						width="100%"/>
-					<m:Label
-						text="Title association:"
-						design="Bold"
-						class="sapUiSmallMarginTop" />
-					<m:Label id="chartTitle" />
-				</m:Panel>
+				<m:HBox>
+					<m:VBox class="sapUiLargeMarginEnd">
+						<m:Panel
+							headerText="Consumption in the last 2 days"
+							class="sapUiSmallMarginBottom">
+							<c:SmartLineMicroChart
+								id="idLineChart"
+								entitySet="FlowStream"
+								width="100%"/>
+						</m:Panel>
+					</m:VBox>
+					<m:VBox>
+						<m:Panel
+							headerText="Consumption in the last 2 days"
+							class="sapUiSmallMarginBottom">
+							<c:SmartLineMicroChart
+								id="idLineChart2"
+								entitySet="FlowStream"
+								width="100%"/>
+						</m:Panel>
+					</m:VBox>
+				</m:HBox>
 				<!-- <m:Table id="idProductsTable"
 						sticky="HeaderToolbar,ColumnHeaders"
 						inset="false"
