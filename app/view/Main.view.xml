@@ -5,7 +5,8 @@
 		xmlns:m="sap.m"
 		xmlns="sap.f"
 		xmlns:layout="sap.ui.layout"
-		xmlns:c="sap.ui.comp.smartmicrochart"
+		xmlns:smc="sap.ui.comp.smartmicrochart"
+		xmlns:mc="sap.suite.ui.microchart"
 		height="100%">
 		<DynamicPage id="dynamicPageId">
 			<!-- DynamicPage Title -->
@@ -13,7 +14,7 @@
 				<DynamicPageTitle>
 					<heading>
 						<m:HBox alignContent="Center">
-						<m:Title text="HTF 2022"/>
+						<m:Title text="Interactive Dashboard"/>
 						<!-- <Image src="https://cdn-icons-png.flaticon.com/128/2991/2991231.png" width="20px" height="20px"/> -->
 						</m:HBox>
 					</heading>
@@ -27,67 +28,63 @@
 			<!-- DynamicPage Header -->
 			<header>
 				<DynamicPageHeader pinnable="true">
-					<!-- <core:HTML id="html"></core:HTML>			 -->
+					<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="Average consumption" subheader="Past Month" press="press">
+						<m:TileContent unit="L" footer="">
+							<m:NumericContent scale="M" value="{reg>/flow/averageConsumptionMonth}" valueColor="Error" indicator="Up" withMargin="false" />
+						</m:TileContent>
+					</m:GenericTile>
+					<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="Average consumption" subheader="Past week" press="press">
+						<m:TileContent unit="L" footer="">
+							<m:NumericContent scale="M" value="{reg>/flow/averageConsumptionWeek}" valueColor="Error" indicator="Up" withMargin="false" />
+						</m:TileContent>
+					</m:GenericTile>
+					<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="Average consumption" subheader="Today" press="press">
+						<m:TileContent unit="L" footer="">
+							<m:NumericContent scale="M" value="{reg>/flow/averageConsumptionToday}" valueColor="Error" indicator="Up" withMargin="false" />
+						</m:TileContent>
+					</m:GenericTile>
 				</DynamicPageHeader>
 			</header>
 			<content>
 				<m:HBox>
 					<m:VBox class="sapUiLargeMarginEnd">
-						<m:Panel
-							headerText="Consumption in the last 2 days"
-							class="sapUiSmallMarginBottom">
-							<c:SmartLineMicroChart
+						<m:Title text="Consumption in Days" class="sapUiSmallMarginBottom"/>
+						<m:FlexBox width="30rem" height="20rem" alignItems="Center" class="sapUiSmallMargin">
+							<m:items>
+								<mc:InteractiveBarChart displayedBars="7" selectionChanged="interactiveBarChartSelectionChanged" press="interactiveBarChartPressed" bars="{reg>/flow/flowBars}">
+									<mc:bars>
+										<mc:InteractiveBarChartBar 
+											value="{reg>flow}" 
+											label="{path: 'reg>date', formatter:'.dateFormatter'}" 
+											color="{}" 
+											selected="{reg>selected}"/>
+									</mc:bars>
+								</mc:InteractiveBarChart>
+							</m:items>
+						</m:FlexBox>
+					</m:VBox>
+					<m:VBox class="sapUiLargeMarginEnd">
+						<m:Title text="Consumption in Hours"/>
+						<m:FlexBox width="50rem" height="20rem" alignItems="Center" class="sapUiSmallMargin">
+							<m:items>
+								<mc:InteractiveLineChart selectionChanged="interactiveLineChartSelectionChanged" press="interactiveLineChartPressed" displayedPoints="25" points="{reg>/flow/flowPoints}" selectionEnabled="true" precedingPoint="1" succeedingPoint="1">
+									<mc:points>
+										<mc:InteractiveLineChartPoint value="{reg>flow}" label="{path: 'reg>datetime', formatter:'.timeFormatter'}" color="{}"/>
+									</mc:points>
+								</mc:InteractiveLineChart>
+							</m:items>
+						</m:FlexBox>
+					</m:VBox>
+					<!-- <m:VBox class="sapUiLargeMarginEnd">
+						<m:Title text="Consumption in Hours"/>
+						<m:FlexBox width="20rem" height="10rem" alignItems="Center" class="sapUiSmallMargin">
+							<smc:SmartLineMicroChart
 								id="idLineChart"
 								entitySet="FlowStream"
-								width="100%"/>
-						</m:Panel>
-					</m:VBox>
-					<m:VBox>
-						<m:Panel
-							headerText="Consumption in the last 2 days"
-							class="sapUiSmallMarginBottom">
-							<c:SmartLineMicroChart
-								id="idLineChart2"
-								entitySet="FlowStream"
-								width="100%"/>
-						</m:Panel>
-					</m:VBox>
+								width="20rem" height="10rem"/>
+						</m:FlexBox>
+					</m:VBox> -->
 				</m:HBox>
-				<!-- <m:Table id="idProductsTable"
-						sticky="HeaderToolbar,ColumnHeaders"
-						inset="false"
-						items="{
-							path: 'reg>/flow/FlowStreams',
-							sorter: {
-								path: 'reg/datetime'
-							}
-						}"
-					   class="sapFDynamicPageAlignContent"
-					   width="auto">
-					<m:headerToolbar>
-						<m:Toolbar>
-							<m:Title text="Flows" level="H2"/>
-						</m:Toolbar>
-					</m:headerToolbar>
-					<m:columns>
-						<m:Column>
-							<m:Text text="Time" />
-						</m:Column>
-						<m:Column>
-							<m:Text text="Flow l/h" />
-						</m:Column>
-					</m:columns>
-					<m:items>
-						<m:ColumnListItem type="Active" press="setMap">
-							<m:cells>
-								<m:ObjectIdentifier
-										title="{reg>datetime}" />
-								<m:Text
-										text="{reg>flow}" />
-							</m:cells>
-						</m:ColumnListItem>
-					</m:items>
-				</m:Table> -->
 			</content>
 		</DynamicPage>
 </mvc:View>

@@ -5,8 +5,4 @@ module.exports = (srv) => {
     let result = await SELECT.from('FlowStreamService.FlowStream', () => {'*'});
     return result.sort((a, b) => a.datetime > b.datetime);
   });
-  srv.on('READLineGraph', async () => {
-    let result = await SELECT.from('FlowStreamService.FlowStream', () => {'*'});
-    return result.sort((a, b) => a.datetime > b.datetime);
-  });
 }

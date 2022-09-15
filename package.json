@@ -16,7 +16,7 @@
   },
   "scripts": {
     "local:db": "cds deploy --to sqlite --no-save",
-    "start": "cds run"
+    "start": "cds watch"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",

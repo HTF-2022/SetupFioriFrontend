@@ -24,11 +24,11 @@ sap.ui.define([
         },
         addNewFlows: function(aNewFlows){
             let aFlows = this.getProperty("flow").FlowStreams;
-          /*  if(aNewFlows){
+            if(aNewFlows){
                 aNewFlows.map((oFlow)=>{
                     oFlow.flow = parseFloat(oFlow.flow);
                 });
-            } */
+            }
             if(aFlows){
                 const aAllFlows = aFlows.concat(aNewFlows);
                 this.updateFlow({FlowStreams: aAllFlows});

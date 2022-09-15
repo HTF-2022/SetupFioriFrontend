@@ -33,6 +33,6 @@ entity FlowStream       @(
 ) : managed {
     key ID       : UUID @(Core.Computed : true);
         flow     : Decimal;
-        datetime : Timestamp;
+        datetime : Date;
         descr    : String;
 }

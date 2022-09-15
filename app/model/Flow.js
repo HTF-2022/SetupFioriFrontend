@@ -7,6 +7,9 @@ sap.ui.define([
 			BaseObject.call(this, data);
 			this.resourceModel = data.resourceModel;
 			this.flowId = '';
+			this.FlowStreams; // Raw flows
+			this.flowBars;
+			this.flowBarSelected = false;
 		},
 		saveToHistory: function () {
 			this.history = this.getJSONForHistory();
