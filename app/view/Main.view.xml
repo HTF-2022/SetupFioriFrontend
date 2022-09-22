@@ -14,8 +14,8 @@
 				<DynamicPageTitle>
 					<heading>
 						<m:HBox alignContent="Center">
-						<m:Title text="Interactive Dashboard"/>
-						<!-- <Image src="https://cdn-icons-png.flaticon.com/128/2991/2991231.png" width="20px" height="20px"/> -->
+							<m:Image src="../img/data_rising_icon.jpg" width="20px" height="20px" class="sapUiSmallMarginEnd"/>
+							<m:Title text="Interactive Dashboard"/>
 						</m:HBox>
 					</heading>
 					<actions>
@@ -28,63 +28,75 @@
 			<!-- DynamicPage Header -->
 			<header>
 				<DynamicPageHeader pinnable="true">
-					<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="Average consumption" subheader="Past Month" press="press">
-						<m:TileContent unit="L" footer="">
-							<m:NumericContent scale="M" value="{reg>/flow/averageConsumptionMonth}" valueColor="Error" indicator="Up" withMargin="false" />
-						</m:TileContent>
-					</m:GenericTile>
-					<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="Average consumption" subheader="Past week" press="press">
-						<m:TileContent unit="L" footer="">
-							<m:NumericContent scale="M" value="{reg>/flow/averageConsumptionWeek}" valueColor="Error" indicator="Up" withMargin="false" />
-						</m:TileContent>
-					</m:GenericTile>
-					<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="Average consumption" subheader="Today" press="press">
-						<m:TileContent unit="L" footer="">
-							<m:NumericContent scale="M" value="{reg>/flow/averageConsumptionToday}" valueColor="Error" indicator="Up" withMargin="false" />
-						</m:TileContent>
-					</m:GenericTile>
+					
 				</DynamicPageHeader>
 			</header>
 			<content>
-				<m:HBox>
-					<m:VBox class="sapUiLargeMarginEnd">
-						<m:Title text="Consumption in Days" class="sapUiSmallMarginBottom"/>
-						<m:FlexBox width="30rem" height="20rem" alignItems="Center" class="sapUiSmallMargin">
-							<m:items>
-								<mc:InteractiveBarChart displayedBars="7" selectionChanged="interactiveBarChartSelectionChanged" press="interactiveBarChartPressed" bars="{reg>/flow/flowBars}">
-									<mc:bars>
-										<mc:InteractiveBarChartBar 
-											value="{reg>flow}" 
-											label="{path: 'reg>date', formatter:'.dateFormatter'}" 
-											color="{}" 
-											selected="{reg>selected}"/>
-									</mc:bars>
-								</mc:InteractiveBarChart>
-							</m:items>
-						</m:FlexBox>
-					</m:VBox>
-					<m:VBox class="sapUiLargeMarginEnd">
-						<m:Title text="Consumption in Hours"/>
-						<m:FlexBox width="50rem" height="20rem" alignItems="Center" class="sapUiSmallMargin">
-							<m:items>
-								<mc:InteractiveLineChart selectionChanged="interactiveLineChartSelectionChanged" press="interactiveLineChartPressed" displayedPoints="25" points="{reg>/flow/flowPoints}" selectionEnabled="true" precedingPoint="1" succeedingPoint="1">
-									<mc:points>
-										<mc:InteractiveLineChartPoint value="{reg>flow}" label="{path: 'reg>datetime', formatter:'.timeFormatter'}" color="{}"/>
-									</mc:points>
-								</mc:InteractiveLineChart>
-							</m:items>
-						</m:FlexBox>
-					</m:VBox>
-					<!-- <m:VBox class="sapUiLargeMarginEnd">
-						<m:Title text="Consumption in Hours"/>
-						<m:FlexBox width="20rem" height="10rem" alignItems="Center" class="sapUiSmallMargin">
-							<smc:SmartLineMicroChart
-								id="idLineChart"
-								entitySet="FlowStream"
-								width="20rem" height="10rem"/>
-						</m:FlexBox>
-					</m:VBox> -->
-				</m:HBox>
+				<m:VBox width="100%">
+					<m:HBox class="sapUiMediumMarginBottom">
+						<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="{i18n>totalConsumption}" subheader="{i18n>thisMonth}" press="pressTotalConsumptionMonth">
+							<m:TileContent unit="{i18n>unitMonth}" footer="">
+								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionMonth', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionMonth', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionMonthValueState}" indicator="{reg>/flow/totalConsumptionMonthIndicator}" withMargin="false" />
+							</m:TileContent>
+						</m:GenericTile>
+						<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="{i18n>totalConsumption}" subheader="{i18n>thisWeek}" press="pressTotalConsumptionWeek">
+							<m:TileContent unit="{i18n>unitWeek}" footer="">
+								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionWeek', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionWeek', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionWeekValueState}" indicator="{reg>/flow/totalConsumptionWeekIndicator}" withMargin="false" />
+							</m:TileContent>
+						</m:GenericTile>
+						<m:GenericTile class="sapUiSmallMargin tileLayout sapUiLargeMarginEnd" size="L" header="{i18n>totalConsumption}" subheader="{i18n>today}" press="pressTotalConsumptionToday">
+							<m:TileContent unit="{i18n>unitDay}" footer="">
+								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionToday', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionToday', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionTodayValueState}" indicator="{reg>/flow/totalConsumptionTodayIndicator}" withMargin="false" />
+							</m:TileContent>
+						</m:GenericTile>
+
+						<m:GenericTile class="sapUiSmallMargin tileLayout sapUiLargeMarginBegin" size="L" header="{i18n>averageConsumption}" subheader="{i18n>thisMonth}" press="pressAverageConsumptionMonth">
+							<m:TileContent unit="{i18n>unitDay}" footer="">
+								<m:NumericContent scale="{ path:'reg>/flow/averageConsumptionMonth', formatter:'.tileScaleformatter' }" value="{ path: 'reg>/flow/averageConsumptionMonth', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/averageConsumptionMonthValueState}" indicator="{reg>/flow/averageConsumptionMonthIndicator}" withMargin="false" />
+							</m:TileContent>
+						</m:GenericTile>
+						<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="{i18n>averageConsumption}" subheader="{i18n>thisWeek}" press="pressAverageConsumptionWeek">
+							<m:TileContent unit="{i18n>unitDay}" footer="">
+								<m:NumericContent scale="{ path:'reg>/flow/averageConsumptionWeek', formatter:'.tileScaleformatter' }" value="{ path: 'reg>/flow/averageConsumptionWeek', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/averageConsumptionWeekValueState}" indicator="{reg>/flow/averageConsumptionWeekIndicator}" withMargin="false" />
+							</m:TileContent>
+						</m:GenericTile>
+						<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="{i18n>averageConsumption}" subheader="{i18n>today}" press="pressAverageConsumptionToday">
+							<m:TileContent unit="{i18n>unitHours}" footer="">
+								<m:NumericContent scale="{ path:'reg>/flow/averageConsumptionToday', formatter:'.tileScaleformatter' }" value="{ path: 'reg>/flow/averageConsumptionToday', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/averageConsumptionTodayValueState}" indicator="{reg>/flow/averageConsumptionTodayIndicator}" withMargin="false" />
+							</m:TileContent>
+						</m:GenericTile>
+					</m:HBox>
+					<m:HBox>
+						<m:VBox class="sapUiLargeMarginEnd">
+							<m:Title text="Consumption in Days" class="sapUiSmallMarginBottom"/>
+							<m:FlexBox width="30rem" height="20rem" alignItems="Center" class="sapUiSmallMargin">
+								<m:items>
+									<mc:InteractiveBarChart displayedBars="7" selectionChanged="interactiveBarChartSelectionChanged" press="interactiveBarChartPressed" bars="{reg>/flow/flowBars}">
+										<mc:bars>
+											<mc:InteractiveBarChartBar 
+												value="{reg>flow}" 
+												label="{path: 'reg>date', formatter:'.dateFormatter'}" 
+												color="{}" 
+												selected="{reg>selected}"/>
+										</mc:bars>
+									</mc:InteractiveBarChart>
+								</m:items>
+							</m:FlexBox>
+						</m:VBox>
+						<m:VBox class="sapUiLargeMarginEnd">
+							<m:Title text="Consumption in Hours"/>
+							<m:FlexBox width="50rem" height="20rem" alignItems="Center" class="sapUiSmallMargin">
+								<m:items>
+									<mc:InteractiveLineChart selectionChanged="interactiveLineChartSelectionChanged" press="interactiveLineChartPressed" displayedPoints="25" points="{reg>/flow/flowPoints}" selectionEnabled="true" precedingPoint="1" succeedingPoint="1">
+										<mc:points>
+											<mc:InteractiveLineChartPoint value="{reg>flow}" label="{path: 'reg>datetime', formatter:'.timeFormatter'}" color="{}"/>
+										</mc:points>
+									</mc:InteractiveLineChart>
+								</m:items>
+							</m:FlexBox>
+						</m:VBox>
+					</m:HBox>
+				</m:VBox>
 			</content>
 		</DynamicPage>
 </mvc:View>

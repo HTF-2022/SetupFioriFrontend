@@ -15,19 +15,25 @@ sap.ui.define([
         getFlowStreams: function(){
             return new Promise((resolve, reject) => {
 				this.getService().getFlowStreams().then((oResult)=>{
-                    this.addNewFlows(oResult);
-                    resolve(oResult);
+                    //this.addNewFlows(oResult);
+                    const aFlows = this.saveFlows(oResult);
+                    resolve(aFlows);
                 }).catch((oError)=>{
                     reject(oError);
                 });
 			});
         },
+        saveFlows: function(aFlows){
+            if(aFlows){
+                aFlows = this.parseFlows(aFlows);
+                this.updateFlow({FlowStreams: aFlows});
+            }
+            return aFlows;
+        },
         addNewFlows: function(aNewFlows){
             let aFlows = this.getProperty("flow").FlowStreams;
             if(aNewFlows){
-                aNewFlows.map((oFlow)=>{
-                    oFlow.flow = parseFloat(oFlow.flow);
-                });
+                aNewFlows = this.parseFlows(aNewFlows);
             }
             if(aFlows){
                 const aAllFlows = aFlows.concat(aNewFlows);
@@ -35,6 +41,13 @@ sap.ui.define([
             } else {
                 this.updateFlow({FlowStreams: aNewFlows}); // initial fill
             }
+        },
+        parseFlows: function(aFlows){
+            aFlows.forEach((oFlow) => {
+                oFlow.flow = parseFloat(oFlow.flow);
+                oFlow.datetime = new Date(oFlow.datetime);
+            });
+            return aFlows;
         },
         updateFlow: function (oFlow) {
             this.getProperty("flow").updateFlow(oFlow);
