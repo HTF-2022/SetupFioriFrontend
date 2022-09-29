@@ -15,34 +15,32 @@ sap.ui.define([
         getFlowStreams: function(){
             return new Promise((resolve, reject) => {
 				this.getService().getFlowStreams().then((oResult)=>{
-                    //this.addNewFlows(oResult);
-                    const aFlows = this.saveFlows(oResult);
+                    const aFlows = this._saveFlows(oResult);
                     resolve(aFlows);
                 }).catch((oError)=>{
                     reject(oError);
                 });
 			});
         },
-        saveFlows: function(aFlows){
-            if(aFlows){
-                aFlows = this.parseFlows(aFlows);
-                this.updateFlow({FlowStreams: aFlows});
-            }
-            return aFlows;
+        getFlowHint: function(sFlowState){
+            return new Promise((resolve, reject) => {
+				this.getService().getFlowHint(sFlowState).then((oResult)=>{
+                    this.updateFlow({oHint: oResult});
+                    resolve(oResult);
+                }).catch((oError)=>{
+                    reject(oError);
+                });
+			});
         },
-        addNewFlows: function(aNewFlows){
-            let aFlows = this.getProperty("flow").FlowStreams;
-            if(aNewFlows){
-                aNewFlows = this.parseFlows(aNewFlows);
-            }
+        _saveFlows: function(aFlows){
+            let aParsedFlows;
             if(aFlows){
-                const aAllFlows = aFlows.concat(aNewFlows);
-                this.updateFlow({FlowStreams: aAllFlows});
-            } else {
-                this.updateFlow({FlowStreams: aNewFlows}); // initial fill
+                aParsedFlows = this._parseFlows(aFlows);
+                this.updateFlow({FlowStreams: aParsedFlows});
             }
+            return aParsedFlows;
         },
-        parseFlows: function(aFlows){
+        _parseFlows: function(aFlows){
             aFlows.forEach((oFlow) => {
                 oFlow.flow = parseFloat(oFlow.flow);
                 oFlow.datetime = new Date(oFlow.datetime);

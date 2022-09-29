@@ -9,4 +9,11 @@ service FlowStreamService {
             to    : ['HTF2022_Viewer']
         }]
     ) as projection on db.FlowStream;
+
+    entity FlowHint @(
+        restrict  : [{
+            grant : ['READ'],
+            to    : ['HTF2022_Viewer']
+        }]
+    ) as projection on db.FlowHint;
 }

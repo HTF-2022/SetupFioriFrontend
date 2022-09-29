@@ -199,8 +199,6 @@ sap.ui.define([
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
 			
 			let aFlows = aFlowStreams.filter((oFlow)=>{
-				// let iFlowDate = this.formatDate(oFlow.datetime);
-				// return iFlowDate > this.formatDate(dXDaysAgo) && iFlowDate <= this.formatDate(dStartDate); // Past 7 days including today
 				let iFlowDate = oFlow.datetime;
 				return iFlowDate > dXDaysAgo && iFlowDate <= dStartDate; // Past 7 days including today
 			})
@@ -213,13 +211,13 @@ sap.ui.define([
 
 		_compareConsumption: function(iTotalPast, iTotal){
 			let sValueState;
-			if(iTotalPast < iTotal * 1.5){ // consumption has risen by a lot
+			if(iTotal > iTotalPast * 1.5){ // consumption has risen by a lot
 				sValueState = "Error";
-			} else if(iTotalPast < iTotal){ // consumption has risen a bit
+			} else if(iTotal > iTotalPast){ // consumption has risen a bit
 				sValueState = "Critical";
-			} else if (iTotalPast === iTotal){ // consumption is same
+			} else if (iTotal === iTotalPast){ // consumption is same
 				sValueState = "Neutral";
-			} else {
+			} else { // iTotal < iTotalPast // consumption is less than before
 				sValueState = "Good";
 			}
 			let sIndicator;
@@ -302,7 +300,7 @@ sap.ui.define([
 			const sDifference = `${this.tileValueformatter(iDifference)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("totalConsumption"),
-				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("today"),
+				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("last24Hours"),
 				dialogTileUnit: this.getView().getModel("i18n").getResourceBundle().getText("unitDay"),
 				dialogTileValue: oFlowModel.totalConsumptionToday, 
 				dialogTileValueColor: oFlowModel.totalConsumptionTodayValueState,
@@ -407,6 +405,13 @@ sap.ui.define([
 			this.oGenericTileDialog.then((oDialog) => {
 				oDialog.close();
 			});
+		},
+
+		pressDialogTile: async function(){
+			const oFlow = this.FlowState.getProperty("flow");
+			const sFlowState = oFlow.dialogTileValueColor;
+			let oFlowHint = await this.FlowState.getFlowHint(sFlowState);
+			MessageToast.show(`${oFlowHint.message}`);
 		},
 
 		createInteractiveBarChart: function(aFlows){

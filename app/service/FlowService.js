@@ -23,6 +23,11 @@ sap.ui.define([
             return axios.get(`${this.serviceUrl}\/FlowStream`).then((oResult) => {
                 return oResult.data.d.results;
             });
+        },
+        getFlowHint: function (sFlowState) {
+            return axios.get(`${this.serviceUrl}\/FlowHint?$filter=state eq '${sFlowState}'`).then((oResult) => {
+                return oResult.data.d.results[0];
+            });
         }
     });
     return FlowService;

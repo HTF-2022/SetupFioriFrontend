@@ -44,7 +44,7 @@
 								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionWeek', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionWeek', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionWeekValueState}" indicator="{reg>/flow/totalConsumptionWeekIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
-						<m:GenericTile class="sapUiSmallMargin tileLayout sapUiLargeMarginEnd" size="L" header="{i18n>totalConsumption}" subheader="{i18n>today}" press="pressTotalConsumptionToday">
+						<m:GenericTile class="sapUiSmallMargin tileLayout sapUiLargeMarginEnd" size="L" header="{i18n>totalConsumption}" subheader="{i18n>last24Hours}" press="pressTotalConsumptionToday">
 							<m:TileContent unit="{i18n>unitDay}" footer="">
 								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionToday', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionToday', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionTodayValueState}" indicator="{reg>/flow/totalConsumptionTodayIndicator}" withMargin="false" />
 							</m:TileContent>
@@ -76,7 +76,7 @@
 											<mc:InteractiveBarChartBar 
 												value="{reg>flow}" 
 												label="{path: 'reg>date', formatter:'.dateFormatter'}" 
-												color="{= 10000 > ${reg>flow} ? 'Good' : ( 15000 > ${reg>flow} ? 'Critical' : 'Error' )}" 
+												color="{= 1000 > ${reg>flow} ? 'Good' : ( 1500 > ${reg>flow} ? 'Critical' : 'Error' )}" 
 												selected="{reg>selected}"/>
 										</mc:bars>
 									</mc:InteractiveBarChart>
@@ -89,7 +89,7 @@
 								<m:items>
 									<mc:InteractiveLineChart selectionChanged="interactiveLineChartSelectionChanged" press="interactiveLineChartPressed" displayedPoints="25" points="{reg>/flow/flowPoints}" selectionEnabled="true" precedingPoint="1" succeedingPoint="1">
 										<mc:points>
-											<mc:InteractiveLineChartPoint value="{reg>flow}" label="{ path: 'reg>datetime', formatter:'.timeFormatter'}" color="{= 1000 > ${reg>flow} ? 'Good' : ( 1500 > ${reg>flow} ? 'Critical' : 'Error' )}"/>
+											<mc:InteractiveLineChartPoint value="{reg>flow}" label="{ path: 'reg>datetime', formatter:'.timeFormatter'}" color="{= 149 > ${reg>flow} ? 'Good' : ( 199 > ${reg>flow} ? 'Critical' : 'Error' )}"/>
 										</mc:points>
 									</mc:InteractiveLineChart>
 								</m:items>

@@ -6,7 +6,7 @@
       id="addGenericTileDialog"
       title="{i18n>genericTileDialogTitle}">
 	  	<HBox class="sapUiSmallMargin">
-			<GenericTile class="sapUiSmallMargin sapUiMediumMarginEnd tileLayout" size="L" header="{reg>/flow/dialogTileHeader}" subheader="{reg>/flow/dialogTileSubheader}">
+			<GenericTile class="sapUiSmallMargin sapUiMediumMarginEnd tileLayout" size="L" header="{reg>/flow/dialogTileHeader}" subheader="{reg>/flow/dialogTileSubheader}" press="pressDialogTile">
 				<TileContent unit="{reg>/flow/dialogTileUnit}" footer="">
 					<NumericContent scale="{ path:'reg>/flow/dialogTileValue', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/dialogTileValue', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/dialogTileValueColor}" indicator="{reg>/flow/dialogTileIndicator}" withMargin="false" />
 				</TileContent>
