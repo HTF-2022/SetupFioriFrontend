@@ -30,6 +30,22 @@ sap.ui.define([
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
 			});
+
+			console.log("⛏️  Scheduling jobs");
+			// schedule.scheduleJob("*/15 * * * *", async () => {
+			// 	try {
+					
+			// 	} catch (e) {
+			// 		// Stop scheduled jobs peacefully
+			// 		schedule.gracefulShutdown();
+			// 		if (e.message)
+			// 			console.log("❗ " + e.message)
+			// 		else if (e && e.response && e.response.status && e.response.data.error.message)
+			// 			console.log(`❗ Error ${e.response.status}: ${e.response.data.error.message}`);
+			// 		else
+			// 			console.log(`❗ Error: ${e.stack}`);
+			// 	}
+			// });
 		},
 
 		tileValueformatter: function(sValue){

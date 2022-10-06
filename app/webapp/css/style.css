@@ -1,0 +1,24 @@
+.wallpaper {
+    background-image: url("../../resources/wallpaper.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.titleBackground {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.graphBackground {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.graphColor {
+    color: white;
+}
+
+.tileBorder {
+    border-color: white;
+    border-width: 2px;
+}
