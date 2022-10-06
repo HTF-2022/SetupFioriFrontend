@@ -66,7 +66,7 @@ module.exports = (srv) => {
 
   srv.on('READ', 'GandalfQuote', async (req, res) => {
     let quotes = await SELECT.from('FlowStreamService.GandalfQuote', () => { '*' });
-    return [quotes];
+    return quotes;
   });
 }
 
