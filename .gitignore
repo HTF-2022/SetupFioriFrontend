@@ -30,3 +30,7 @@ mta_archives/
 # .idea
 
 *HTML5Module.zip*
+
+dist/
+resources/
+app/*/package-lock.json

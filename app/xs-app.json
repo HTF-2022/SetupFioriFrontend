@@ -3,11 +3,23 @@
   "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/srv/(.*)",
-      "target": "$1",
-      "destination": "HTF2022",
+      "source": "^/v2/(.*)$",
+      "target": "/v2/$1",
+      "destination": "SetupFioriFrontend-app-srv",
       "authenticationType": "xsuaa",
       "csrfProtection": false
+    },
+    {
+      "source": "^/resources/(.*)$",
+      "target": "/resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
+    },
+    {
+      "source": "^/test-resources/(.*)$",
+      "target": "/test-resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
     },
     {
       "source": "^(.*)$",

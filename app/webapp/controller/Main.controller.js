@@ -25,8 +25,7 @@ sap.ui.define([
             this.FlowState.getFlowStreams().then((aFlows)=>{
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
-				const iDay = dToday.getDate();
-				this._handleLineGraph(iDay);
+				this._handleLineGraph(dToday);
 
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
@@ -58,8 +57,7 @@ sap.ui.define([
 		interactiveBarChartSelectionChanged: function(oEvent){
 			const oBar = oEvent.getParameter("bar");
 			this._handleBarSelectedState(oBar);
-			const iDay = parseInt(oBar.getLabel().split("/")[0]);
-			this._handleLineGraph(iDay);
+			this._handleLineGraph(oBar.oBindingContexts.reg.getObject().date);
 		},
 
 		_handleBarSelectedState: function(oBar){
@@ -77,10 +75,10 @@ sap.ui.define([
 			this.FlowState.updateFlow({flowBarSelected: flowBarSelected});
 		},
 
-		_handleLineGraph: function(iDay){
+		_handleLineGraph: function(dDate){
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
 			const aSelectedFlowStreams = aFlowStreams.filter((oStream) => {
-				return (oStream.datetime.getDate() === iDay);
+				return (oStream.datetime.getDate() === dDate.getDate() && oStream.datetime.getMonth() === dDate.getMonth());
 			});
 			this.FlowState.updateFlow({flowPoints: aSelectedFlowStreams});
 		},
@@ -215,9 +213,9 @@ sap.ui.define([
 				sValueState = "Error";
 			} else if(iTotal > iTotalPast){ // consumption has risen a bit
 				sValueState = "Critical";
-			} else if (iTotal === iTotalPast){ // consumption is same
+			} /*else if (iTotal === iTotalPast){ // consumption is same
 				sValueState = "Neutral";
-			} else { // iTotal < iTotalPast // consumption is less than before
+			}*/ else { // iTotal < iTotalPast // consumption is less than before
 				sValueState = "Good";
 			}
 			let sIndicator;
@@ -418,10 +416,10 @@ sap.ui.define([
 			let aFlowBars = [];
 			let aDates = [];
 			const dToday = new Date();
-			const d7DaysAgo = dToday.addDays(-7);
+			const d7DaysAgo = dToday.addDays(-6); // 6 days + today
 			let aFilterFlows = aFlows.filter((oFlow)=>{
-				let iFlowDate = this.formatDate(oFlow.datetime);
-				return iFlowDate > this.formatDate(d7DaysAgo) && iFlowDate <= this.formatDate(dToday); // Past 7 days including today
+				let iFlowDate = oFlow.datetime;
+				return iFlowDate > d7DaysAgo && iFlowDate <= dToday; // Past 7 days including today
 			})
 			aFilterFlows.map(oFlow => {
 				if(!aDates.includes(this.formatDate(oFlow.datetime))){ // If new date entry = new bar

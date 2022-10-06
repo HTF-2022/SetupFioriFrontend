@@ -1,0 +1,19 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.HTF2022_Viewer",
+      "description": "HTF2022_Viewer"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "HTF2022_Viewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.HTF2022_Viewer"
+      ],
+      "attribute-references": []
+    }
+  ]
+}
