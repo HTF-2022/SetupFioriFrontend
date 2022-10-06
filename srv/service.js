@@ -3,6 +3,7 @@ const mqtt = require('mqtt');
 
 let aFlowData = [];
 let oPreviousFlow = null;
+let oPreviousMessage = null;
 
 var oOptions = {
   host: 'ac24c670632142bab0a422606038f608.s1.eu.hivemq.cloud',
@@ -26,21 +27,25 @@ client.on('error', function (error) {
 
 client.on('message', function (topic, message) {
   // called each time a message is received
-  console.log('Received message:', topic, message.toString());
+  //console.log('Received message:', topic, message.toString());
   let jsonS = message.toString();
   let obj = JSON.parse(jsonS);
   obj.datetime = new Date(obj.datetime);
   // Tracking 0-flows -> Only save first 0 and last 0 flow. (0's in between are not useful)
-  if(parseInt(obj.flow === 0) && oPreviousFlow && parseInt(oPreviousFlow.flow) === 0){ // Only add 0-flow the first time, not the next ones
+  if(obj.flow === 0 && oPreviousFlow && oPreviousFlow.flow === 0){ // Only add 0-flow the first time, not the next ones
     // do nothing
-  } else if (parseInt(obj.flow !== 0) && oPreviousFlow && parseInt(oPreviousFlow.flow) === 0){ // Add 0 flow before saving useful flows (not 0 flows) again 
+  } else if (obj.flow !== 0 && oPreviousFlow && oPreviousFlow.flow === 0){ // Add 0 flow before saving useful flows (not 0 flows) again 
+    console.log('Logged message:', topic, oPreviousMessage.toString());
     aFlowData.push(oPreviousFlow);
+    console.log('Logged message:', topic, message.toString());
     aFlowData.push(obj);
   } else {
+    console.log('Logged message:', topic, message.toString());
     aFlowData.push(obj);
   }
   // save previous flow
   oPreviousFlow = obj;
+  oPreviousMessage = message;
 });
 
 // subscribe to topic 'my/test/topic'
