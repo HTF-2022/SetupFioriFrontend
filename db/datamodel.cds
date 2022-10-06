@@ -14,3 +14,10 @@ entity FlowHint : managed {
         state   : String;
         message : String;
 }
+
+entity GandalfQuote : managed {
+    key ID      : Integer;
+        type   : String;
+        message : String;
+}
+

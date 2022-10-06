@@ -63,6 +63,11 @@ module.exports = (srv) => {
     let oResult = aHints[getRndInteger(0, aHints.length - 1)];
     return [oResult];
   });
+
+  srv.on('READ', 'GandalfQuote', async (req, res) => {
+    let quotes = await SELECT.from('FlowStreamService.GandalfQuote', () => { '*' });
+    return [quotes];
+  });
 }
 
 function getRndInteger(min, max) {

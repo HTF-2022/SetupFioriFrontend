@@ -16,4 +16,11 @@ service FlowStreamService {
             to    : ['HTF2022_Viewer']
         }]
     ) as projection on db.FlowHint;
+
+    entity GandalfQuote @(
+        restrict  : [{
+            grant : ['READ'],
+            to    : ['HTF2022_Viewer']
+        }]
+    ) as projection on db.GandalfQuote;
 }
