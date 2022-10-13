@@ -32,6 +32,16 @@ sap.ui.define([
                 });
 			});
         },
+        getFlowQuote: function(bIsGood){
+            return new Promise((resolve, reject) => {
+				this.getService().getFlowQuote(bIsGood).then((oResult)=>{
+                    this.updateFlow({oQuote: oResult});
+                    resolve(oResult);
+                }).catch((oError)=>{
+                    reject(oError);
+                });
+			});
+        },
         _saveFlows: function(aFlows){
             let aParsedFlows;
             if(aFlows){

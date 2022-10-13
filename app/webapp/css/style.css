@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'gandalf'; 
+    src: url('./fonts/MedievalSharp-Regular.ttf');
+}
+
+.wizMesGood {
+    font-family: 'gandalf';
+    color: white;
+    font-weight: bold;
+}
+
 .wallpaper {
     background-image: url("./../img/wallpaper.jpg");
     height: 100%;

@@ -28,6 +28,15 @@ sap.ui.define([
             return axios.get(`${this.serviceUrl}\/FlowHint?$filter=state eq '${sFlowState}'`).then((oResult) => {
                 return oResult.data.d.results[0];
             });
+        },
+        getFlowQuote: function (bIsGood) {
+            return axios.get(`${this.serviceUrl}\/GandalfQuote`).then((oResult) => {
+                let quotes = oResult.data.d.results;
+                let filterVal = bIsGood ? "GOOD" : "BAD";
+                let filtered = quotes.filter((q) => q.type === filterVal);
+                return filtered[Math.floor(Math.random() * filtered.length)];
+            });
+
         }
     });
     return FlowService;

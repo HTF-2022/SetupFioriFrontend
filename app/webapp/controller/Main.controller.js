@@ -30,7 +30,8 @@ sap.ui.define([
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
 				this._handleLineGraph(dToday);
-
+				let lastData = aFlows[aFlows.length - 1];
+				this._handleWizard(lastData.flow > 0);
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
 				this._handleLineGraph(dToday);
@@ -85,6 +86,10 @@ sap.ui.define([
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
 			const aSelectedFlowStreams = aFlowStreams.slice(-25);
 			this.FlowState.updateFlow({flowPoints: aSelectedFlowStreams});
+		},
+
+		_handleWizard: function(bIsGood) {
+			this.FlowState.getFlowQuote(bIsGood);
 		},
 
 		_handleAverageConsumptions: function(){
