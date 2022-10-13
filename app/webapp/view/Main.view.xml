@@ -38,13 +38,13 @@
 								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionWeek', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionWeek', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionWeekValueState}" indicator="{reg>/flow/totalConsumptionWeekIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
-						<m:GenericTile class="sapUiSmallMargin tileLayout sapUiLargeMarginEnd graphBackground tileBorder" size="L" header="{i18n>totalConsumption}" subheader="{i18n>last24Hours}" press="pressTotalConsumptionToday">
+						<m:GenericTile class="sapUiSmallMargin tileLayout graphBackground tileBorder" size="L" header="{i18n>totalConsumption}" subheader="{i18n>last24Hours}" press="pressTotalConsumptionToday">
 							<m:TileContent unit="{i18n>unitDay}" footer="">
 								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionToday', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionToday', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionTodayValueState}" indicator="{reg>/flow/totalConsumptionTodayIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
 
-						<m:GenericTile class="sapUiSmallMargin tileLayout sapUiLargeMarginBegin graphBackground tileBorder" size="L" header="{i18n>averageConsumption}" subheader="{i18n>thisMonth}" press="pressAverageConsumptionMonth">
+						<m:GenericTile class="sapUiSmallMargin tileLayout graphBackground tileBorder" size="L" header="{i18n>averageConsumption}" subheader="{i18n>thisMonth}" press="pressAverageConsumptionMonth">
 							<m:TileContent unit="{i18n>unitDay}" footer="">
 								<m:NumericContent scale="{ path:'reg>/flow/averageConsumptionMonth', formatter:'.tileScaleformatter' }" value="{ path: 'reg>/flow/averageConsumptionMonth', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/averageConsumptionMonthValueState}" indicator="{reg>/flow/averageConsumptionMonthIndicator}" withMargin="false" />
 							</m:TileContent>

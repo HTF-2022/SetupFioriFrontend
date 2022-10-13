@@ -22,22 +22,17 @@ sap.ui.define([
 			this.FlowState = this.getOwnerComponent().FlowState;
             this.getView().setModel(this.FlowState.getModel(), "reg");
 			
-            this.FlowState.getFlowStreams().then((aFlows)=>{
+			this.readData(this.FlowState, this);
+		},
+
+		readData: function(FlowState, that){
+			FlowState.getFlowStreams().then((aFlows) =>{
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
 				this._handleLineGraph(dToday);
 
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
-				
-				console.log("⛏️  Scheduling jobs");
-				this.readData(this.FlowState, this);
-			});
-		},
-
-		readData: function(FlowState, that){
-			FlowState.getFlowStreams().then(() =>{
-				const dToday = new Date();
 				this._handleLineGraph(dToday);
 				setTimeout(function(){that.readData(FlowState, that)}, 2000);
 			});
