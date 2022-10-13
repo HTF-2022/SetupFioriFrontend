@@ -4,10 +4,10 @@ Welcome to the HTF-2022 project.
 This project consists of a middleware application built in Cloud Application Programming model (CAP), and a Fiori front-end application. Here’s how it’s structured:
 
 - App
+    - Resources -> all local images used in the application
     - Webapp
         - Controllers -> JavaScript code & eventhandlers behind the views
         - Views -> XML views
-        - Img -> all local images used in the application
         - Services -> API-handling
         - State -> Business logic
         - Model -> Object properties & Object functions

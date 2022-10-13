@@ -26,9 +26,21 @@ sap.ui.define([
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
 				this._handleLineGraph(dToday);
-				this._handleWizard(false);
+				let lastData = aFlows[aFlows.length - 1];
+				this._handleWizard(lastData.flow > 0);
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
+				
+				console.log("⛏️  Scheduling jobs");
+				this.readData(this.FlowState, this);
+			});
+		},
+
+		readData: function(FlowState, that){
+			FlowState.getFlowStreams().then(() =>{
+				const dToday = new Date();
+				this._handleLineGraph(dToday);
+				setTimeout(function(){that.readData(FlowState, that)}, 2000);
 			});
 		},
 
@@ -77,9 +89,7 @@ sap.ui.define([
 
 		_handleLineGraph: function(dDate){
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
-			const aSelectedFlowStreams = aFlowStreams.filter((oStream) => {
-				return (oStream.datetime.getDate() === dDate.getDate() && oStream.datetime.getMonth() === dDate.getMonth());
-			});
+			const aSelectedFlowStreams = aFlowStreams.slice(-25);
 			this.FlowState.updateFlow({flowPoints: aSelectedFlowStreams});
 		},
 
