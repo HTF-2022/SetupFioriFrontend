@@ -14,7 +14,7 @@
 				<DynamicPageTitle class="titleBackground">
 					<heading>
 						<m:HBox alignContent="Center">
-							<m:Image src="../resources/data_rising_icon.jpg" width="20px" height="20px" class="sapUiSmallMarginEnd"/>
+							<m:Image src="./img/data_rising_icon.jpg" width="20px" height="20px" class="sapUiSmallMarginEnd"/>
 							<m:Title text="Interactive Dashboard" class="graphColor"/>
 						</m:HBox>
 					</heading>

@@ -48,8 +48,23 @@ client.on('message', function (topic, message) {
   oPreviousMessage = message;
 });
 
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
 // subscribe to topic 'my/test/topic'
 client.subscribe('/flowMeter');
+
+function getTestData(){
+  aFlowData.push({
+    flow: getRndInteger(0, 300),
+    datetime: new Date(),
+    descr: "flow in L/min"
+  });
+  setTimeout(function(){getTestData()}, 2000)
+}
+
+getTestData();
 
 module.exports = (srv) => {
   srv.on('READ', 'FlowStream', async (req, res) => {
@@ -68,8 +83,4 @@ module.exports = (srv) => {
     let quotes = await SELECT.from('FlowStreamService.GandalfQuote', () => { '*' });
     return quotes;
   });
-}
-
-function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

@@ -29,23 +29,18 @@ sap.ui.define([
 
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
+				
+				console.log("⛏️  Scheduling jobs");
+				this.readData(this.FlowState, this);
 			});
+		},
 
-			console.log("⛏️  Scheduling jobs");
-			// schedule.scheduleJob("*/15 * * * *", async () => {
-			// 	try {
-					
-			// 	} catch (e) {
-			// 		// Stop scheduled jobs peacefully
-			// 		schedule.gracefulShutdown();
-			// 		if (e.message)
-			// 			console.log("❗ " + e.message)
-			// 		else if (e && e.response && e.response.status && e.response.data.error.message)
-			// 			console.log(`❗ Error ${e.response.status}: ${e.response.data.error.message}`);
-			// 		else
-			// 			console.log(`❗ Error: ${e.stack}`);
-			// 	}
-			// });
+		readData: function(FlowState, that){
+			FlowState.getFlowStreams().then(() =>{
+				const dToday = new Date();
+				this._handleLineGraph(dToday);
+				setTimeout(function(){that.readData(FlowState, that)}, 2000);
+			});
 		},
 
 		tileValueformatter: function(sValue){
@@ -93,9 +88,7 @@ sap.ui.define([
 
 		_handleLineGraph: function(dDate){
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
-			const aSelectedFlowStreams = aFlowStreams.filter((oStream) => {
-				return (oStream.datetime.getDate() === dDate.getDate() && oStream.datetime.getMonth() === dDate.getMonth());
-			});
+			const aSelectedFlowStreams = aFlowStreams.slice(-25);
 			this.FlowState.updateFlow({flowPoints: aSelectedFlowStreams});
 		},
 

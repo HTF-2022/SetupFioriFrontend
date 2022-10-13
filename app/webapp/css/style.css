@@ -1,5 +1,5 @@
 .wallpaper {
-    background-image: url("../../resources/wallpaper.jpg");
+    background-image: url("./../img/wallpaper.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
