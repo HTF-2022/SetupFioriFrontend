@@ -26,7 +26,7 @@ sap.ui.define([
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
 				this._handleLineGraph(dToday);
-
+				this._handleWizard(false);
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
 			});
@@ -81,6 +81,10 @@ sap.ui.define([
 				return (oStream.datetime.getDate() === dDate.getDate() && oStream.datetime.getMonth() === dDate.getMonth());
 			});
 			this.FlowState.updateFlow({flowPoints: aSelectedFlowStreams});
+		},
+
+		_handleWizard: function(bIsGood) {
+			this.FlowState.getFlowQuote(bIsGood);
 		},
 
 		_handleAverageConsumptions: function(){

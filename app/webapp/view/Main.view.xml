@@ -14,7 +14,7 @@
 				<DynamicPageTitle>
 					<heading>
 						<m:HBox alignContent="Center">
-							<m:Image src="../img/data_rising_icon.jpg" width="20px" height="20px" class="sapUiSmallMarginEnd"/>
+							<m:Image src="./img/data_rising_icon.jpg" width="20px" height="20px" class="sapUiSmallMarginEnd"/>
 							<m:Title text="Interactive Dashboard"/>
 						</m:HBox>
 					</heading>
@@ -44,13 +44,12 @@
 								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionWeek', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionWeek', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionWeekValueState}" indicator="{reg>/flow/totalConsumptionWeekIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
-						<m:GenericTile class="sapUiSmallMargin tileLayout sapUiLargeMarginEnd" size="L" header="{i18n>totalConsumption}" subheader="{i18n>last24Hours}" press="pressTotalConsumptionToday">
+						<m:GenericTile class="sapUiSmallMargin tileLayout" size="L" header="{i18n>totalConsumption}" subheader="{i18n>last24Hours}" press="pressTotalConsumptionToday">
 							<m:TileContent unit="{i18n>unitDay}" footer="">
 								<m:NumericContent scale="{ path:'reg>/flow/totalConsumptionToday', formatter:'.tileScaleformatter' }" value="{ path:'reg>/flow/totalConsumptionToday', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/totalConsumptionTodayValueState}" indicator="{reg>/flow/totalConsumptionTodayIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
-
-						<m:GenericTile class="sapUiSmallMargin tileLayout sapUiLargeMarginBegin" size="L" header="{i18n>averageConsumption}" subheader="{i18n>thisMonth}" press="pressAverageConsumptionMonth">
+						<m:GenericTile class="sapUiSmallMargin tileLayout " size="L" header="{i18n>averageConsumption}" subheader="{i18n>thisMonth}" press="pressAverageConsumptionMonth">
 							<m:TileContent unit="{i18n>unitDay}" footer="">
 								<m:NumericContent scale="{ path:'reg>/flow/averageConsumptionMonth', formatter:'.tileScaleformatter' }" value="{ path: 'reg>/flow/averageConsumptionMonth', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/averageConsumptionMonthValueState}" indicator="{reg>/flow/averageConsumptionMonthIndicator}" withMargin="false" />
 							</m:TileContent>
@@ -65,6 +64,12 @@
 								<m:NumericContent scale="{ path:'reg>/flow/averageConsumptionToday', formatter:'.tileScaleformatter' }" value="{ path: 'reg>/flow/averageConsumptionToday', formatter:'.tileValueformatter' }" valueColor="{reg>/flow/averageConsumptionTodayValueState}" indicator="{reg>/flow/averageConsumptionTodayIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
+						<m:VBox justifyContent="Center" alignContent="SpaceAround" alignItems="Center">
+							<m:Image  src="{= ${reg>/flow/oQuote/type} === 'GOOD' ? './img/good_wiz.svg' : './img/bad_wiz.svg'}" width="100px" height="100px"/>
+							<m:Text class="wizMesGood" text="{reg>/flow/oQuote/message}"  />
+						</m:VBox>
+
+
 					</m:HBox>
 					<m:HBox>
 						<m:VBox class="sapUiLargeMarginEnd">
