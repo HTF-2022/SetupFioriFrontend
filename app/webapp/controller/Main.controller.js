@@ -461,6 +461,11 @@ sap.ui.define([
 			return iNum.toString().padStart(2, '0');
 		},
 
+		flowFormatter: function(flow){
+			if (flow === null) return null;
+			return parseFloat((Math.round(flow * 100) / 100).toFixed(2));
+		},
+
 		timeFormatter: function (date) {
 			if (date === null) return null;
 			const dateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({

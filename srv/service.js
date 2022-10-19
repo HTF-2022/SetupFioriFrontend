@@ -57,7 +57,7 @@ client.subscribe('/flowMeter');
 
 function getTestData(){
   aFlowData.push({
-    flow: getRndInteger(0, 300),
+    flow: getRndInteger(0, 300) / 100,
     datetime: new Date(),
     descr: "flow in L/min"
   });

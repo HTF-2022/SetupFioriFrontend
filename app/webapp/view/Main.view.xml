@@ -73,9 +73,9 @@
 									<mc:InteractiveBarChart displayedBars="7" selectionChanged="interactiveBarChartSelectionChanged" press="interactiveBarChartPressed" bars="{reg>/flow/flowBars}" class="sapUiSmallMarginTop">
 										<mc:bars>
 											<mc:InteractiveBarChartBar 
-												value="{reg>flow}" 
+												value="{path: 'reg>flow', formatter:'.flowFormatter'}" 
 												label="{path: 'reg>date', formatter:'.dateFormatter'}" 
-												color="{= 1000 > ${reg>flow} ? 'Good' : ( 1500 > ${reg>flow} ? 'Critical' : 'Error' )}" 
+												color="{= 100 > ${reg>flow} ? 'Good' : ( 150 > ${reg>flow} ? 'Critical' : 'Error' )}" 
 												selected="{reg>selected}"
 												class="graphColor"/>
 										</mc:bars>
@@ -89,7 +89,7 @@
 								<m:items>
 									<mc:InteractiveLineChart selectionChanged="interactiveLineChartSelectionChanged" press="interactiveLineChartPressed" displayedPoints="25" points="{reg>/flow/flowPoints}" selectionEnabled="true" precedingPoint="1" succeedingPoint="1">
 										<mc:points>
-											<mc:InteractiveLineChartPoint value="{reg>flow}" label="{ path: 'reg>datetime', formatter:'.timeFormatter'}" color="{= 149 > ${reg>flow} ? 'Good' : ( 199 > ${reg>flow} ? 'Critical' : 'Error' )}"/>
+											<mc:InteractiveLineChartPoint value="{path: 'reg>flow', formatter:'.flowFormatter'}" label="{ path: 'reg>datetime', formatter:'.timeFormatter'}" color="{= 1.49 > ${reg>flow} ? 'Good' : ( 1.99 > ${reg>flow} ? 'Critical' : 'Error' )}"/>
 										</mc:points>
 									</mc:InteractiveLineChart>
 								</m:items>
