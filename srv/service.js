@@ -64,7 +64,7 @@ function getTestData(){
   setTimeout(function(){getTestData()}, 2000)
 }
 
-getTestData();
+//getTestData();
 
 module.exports = (srv) => {
   srv.on('READ', 'FlowStream', async (req, res) => {
