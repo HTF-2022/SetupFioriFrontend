@@ -24,11 +24,11 @@ sap.ui.define([
         },
         getFlowHint: function(sFlowState){
             return new Promise((resolve, reject) => {
-				this.getService().getFlowHints().then((oResult)=>{
-                    let aFiltered = oResult.filter((oQuote) => oQuote.state === sFlowState);
+				this.getService().getFlowHints().then((aResults)=>{
+                    let aFiltered = aResults.filter((oResult) => oResult.state === sFlowState);
                     let oHint = aFiltered[Math.floor(Math.random() * aFiltered.length)];
                     this.updateFlow({oHint: oHint});
-                    resolve(oResult);
+                    resolve(oHint);
                 }).catch((oError)=>{
                     reject(oError);
                 });
@@ -36,12 +36,12 @@ sap.ui.define([
         },
         getFlowQuote: function(bIsGood){
             return new Promise((resolve, reject) => {
-				this.getService().getFlowQuotes().then((oResult)=>{
+				this.getService().getFlowQuotes().then((aResults)=>{
                     let bFilterVal = bIsGood ? "GOOD" : "BAD";
-                    let aFiltered = oResult.filter((oQuote) => oQuote.type === bFilterVal);
+                    let aFiltered = aResults.filter((oResult) => oResult.type === bFilterVal);
                     let oQuote = aFiltered[Math.floor(Math.random() * aFiltered.length)];
                     this.updateFlow({oQuote: oQuote});
-                    resolve(oResult);
+                    resolve(oQuote);
                 }).catch((oError)=>{
                     reject(oError);
                 });
