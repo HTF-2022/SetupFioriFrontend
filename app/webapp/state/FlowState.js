@@ -38,7 +38,7 @@ sap.ui.define([
 
         getFlowQuote: function(bIsGood){
             return new Promise((resolve, reject) => {
-				this.getService().getFlowQuote(bIsGood).then((aResults)=>{
+				this.getService().getFlowQuotes(bIsGood).then((aResults)=>{
                     let bFilterVal = bIsGood ? "GOOD" : "BAD";
                     let aFiltered = aResults.filter((oResult) => oResult.type === bFilterVal);
                     let oQuote = aFiltered[Math.floor(Math.random() * aFiltered.length)];

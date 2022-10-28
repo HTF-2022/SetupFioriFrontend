@@ -27,7 +27,6 @@ client.on('error', function (error) {
 
 client.on('message', function (topic, message) {
   // called each time a message is received
-  //console.log('Received message:', topic, message.toString());
   let jsonS = message.toString();
   let obj = JSON.parse(jsonS);
   obj.datetime = new Date(obj.datetime);
@@ -56,8 +55,8 @@ function getRndInteger(min, max) {
 client.subscribe('/flowMeter');
 
 function getTestData(){
-  let dTime = new Date().getTime();
-  let dDate = new Date(dTime + 2 * 60 * 60 * 1000);
+  //let dTime = new Date().getTime();
+  //let dDate = new Date(dTime + 2 * 60 * 60 * 1000);
   aFlowData.push({
     flow: getRndInteger(8, 18), //  low 8-10; normal 10-14, high 14-16 current
     datetime: new Date(),
@@ -71,7 +70,6 @@ getTestData();
 module.exports = (srv) => {
   srv.on('READ', 'FlowStream', async (req, res) => {
     let aResults = await SELECT.from('FlowStreamService.FlowStream', () => { '*' });
-    console.log(aFlowData);
     let aMockAndRealtimeData = [...aResults, ...aFlowData];
     return aMockAndRealtimeData.sort((a, b) => a.datetime > b.datetime);
   });
