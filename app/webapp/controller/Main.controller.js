@@ -30,8 +30,7 @@ sap.ui.define([
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
 				this._handleLineGraph(dToday);
-				let lastData = aFlows[aFlows.length - 1];
-				this._handleWizard(lastData.flow > 0);
+				this._handleWizard(aFlows);
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
 				this._handleLineGraph(dToday);
@@ -88,8 +87,35 @@ sap.ui.define([
 			this.FlowState.updateFlow({flowPoints: aSelectedFlowStreams});
 		},
 
-		_handleWizard: function(bIsGood) {
-			this.FlowState.getFlowQuote(bIsGood);
+		_handleWizard: function(aFlows) {
+			let currData = aFlows[aFlows.length - 1];
+			let flowLevelHigh = this.FlowState.getProperty("flow").flowLevels.flowLevels.HIGH;
+			let currFlowCheck = currData.flow < flowLevelHigh;
+			this.FlowState.getFlowQuote(currFlowCheck);
+
+			/*
+			let prevData = aFlows[aFlows.length - 2];
+			let currData = aFlows[aFlows.length - 1];
+			console.log("prev & curr", prevData, currData);
+			
+			if (currData) {
+				let flowLevelHigh = this.FlowState.getProperty("flow").flowLevels.flowLevels.HIGH;
+				console.log("lvl", flowLevelHigh);
+				let currFlowCheck = currData.flow < flowLevelHigh;
+				console.log("curCheck", currFlowCheck);
+				if (!prevData) {
+					this.FlowState.getFlowQuote(currFlowCheck);
+				} else {
+					let prevFlowCheck = prevData.flow < flowLevelHigh;
+					console.log("prevFlowCheck", prevFlowCheck);
+					if ( prevFlowCheck !== currFlowCheck) {
+						this.FlowState.getFlowQuote(currFlowCheck);
+					} else {
+						this.FlowState.getFlowQuote(prevFlowCheck);
+					}
+
+				}
+			}*/
 		},
 
 		_handleAverageConsumptions: function(){
@@ -207,13 +233,9 @@ sap.ui.define([
 			
 			let aFlows = aFlowStreams.filter((oFlow)=>{
 				let iFlowDate = oFlow.datetime;
-				return iFlowDate > dXDaysAgo && iFlowDate <= dStartDate; // Past 7 days including today
-			})
-			let iTotal = 0;
-			aFlows.map((oFlow) => {
-				iTotal += oFlow.flow
+				return iFlowDate > dXDaysAgo && iFlowDate <= dStartDate; 
 			});
-			return iTotal;
+			return this._calcConsumption(aFlows);
 		},
 
 		_compareConsumption: function(iTotalPast, iTotal){
@@ -423,30 +445,48 @@ sap.ui.define([
 
 		createInteractiveBarChart: function(aFlows){
 			let aFlowBars = [];
-			let aDates = [];
 			const dToday = new Date();
 			const d7DaysAgo = dToday.addDays(-6); // 6 days + today
 			let aFilterFlows = aFlows.filter((oFlow)=>{
 				let iFlowDate = oFlow.datetime;
 				return iFlowDate > d7DaysAgo && iFlowDate <= dToday; // Past 7 days including today
 			})
-			aFilterFlows.map(oFlow => {
-				if(!aDates.includes(this.formatDate(oFlow.datetime))){ // If new date entry = new bar
-					aDates.push(this.formatDate(oFlow.datetime));
-					aFlowBars.push({ // Set new bar
-						date: oFlow.datetime,
-						flow: oFlow.flow,
-						selected: false // default unselected
-					});
-				} else { // Bar already exists
-					aFlowBars.map((flowBar) => {
-						if(this.formatDate(flowBar.date) === this.formatDate(oFlow.datetime)){ // Only update corresponding bar with same date
-							flowBar.flow += oFlow.flow; // add flow amount
-						}
-					});
+
+			let mMappedFilterFlows = new Map();
+
+			aFilterFlows.forEach((flow) => {
+				let date = flow.datetime.toDateString();
+				if (!mMappedFilterFlows.has(date)) {
+					mMappedFilterFlows.set(date, [flow]);
+				} else {
+					mMappedFilterFlows.set(date, [...mMappedFilterFlows.get(date), flow]);
 				}
 			});
-			this.FlowState.updateFlow({flowBars: aFlowBars})
+
+			let self = this;
+			mMappedFilterFlows.forEach((v,k) => { 
+				aFlowBars.push({ // Set new bar
+					date: new Date(k),
+					consumption: self._calcConsumption(v),
+					selected: false // default unselected
+				})
+			});
+
+			this.FlowState.updateFlow({flowBars: aFlowBars});
+		},
+
+		_calcConsumption: function (aFlows) {
+			let iTotal = 0;
+			for (let i = 0; i < aFlows.length; i++) {
+				let prev = aFlows[i-1];
+				if (prev) {
+					let curr = aFlows[i];
+					let currConsumption = (((prev.flow + curr.flow) / 2) / 60) * ((curr.datetime.getTime() - prev.datetime.getTime()) / 1000); //diff time 
+					iTotal += currConsumption;
+				}
+			};
+			
+			return iTotal;
 		},
 
 		formatDate: function(dDate){
@@ -464,6 +504,11 @@ sap.ui.define([
 		flowFormatter: function(flow){
 			if (flow === null) return null;
 			return parseFloat((Math.round(flow * 100) / 100).toFixed(2));
+		},
+
+		consumptionFormatter: function(flow){
+			if (flow === null) return null;
+			return parseFloat((Math.round(flow * 100) / 100).toFixed(2)).toString() + "L";
 		},
 
 		timeFormatter: function (date) {

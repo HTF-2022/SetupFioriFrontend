@@ -12,6 +12,7 @@ sap.ui.define([
             };
             BaseState.call(this);
         },
+
         getFlowStreams: function(){
             return new Promise((resolve, reject) => {
 				this.getService().getFlowStreams().then((oResult)=>{
@@ -32,16 +33,23 @@ sap.ui.define([
                 });
 			});
         },
+
         getFlowQuote: function(bIsGood){
             return new Promise((resolve, reject) => {
 				this.getService().getFlowQuote(bIsGood).then((oResult)=>{
-                    this.updateFlow({oQuote: oResult});
+                    if ( !this.getProperty("flow").oQuote ) {
+                        this.updateFlow({oQuote: oResult});
+                    }
+                    if ( this.getProperty("flow").oQuote && this.getProperty("flow").oQuote.type !== oResult.type ) {
+                        this.updateFlow({oQuote: oResult});
+                    } 
                     resolve(oResult);
                 }).catch((oError)=>{
                     reject(oError);
                 });
 			});
         },
+
         _saveFlows: function(aFlows){
             let aParsedFlows;
             if(aFlows){

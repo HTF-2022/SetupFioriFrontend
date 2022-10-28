@@ -57,18 +57,19 @@ client.subscribe('/flowMeter');
 
 function getTestData(){
   aFlowData.push({
-    flow: getRndInteger(0, 300) / 100,
+    flow: getRndInteger(8, 18), //  low 8-10; normal 10-14, high 14-16 current
     datetime: new Date(),
     descr: "flow in L/min"
   });
-  setTimeout(function(){getTestData()}, 2000)
+  setTimeout(function(){ getTestData() }, 2000)
 }
 
-getTestData();
+//getTestData();
 
 module.exports = (srv) => {
   srv.on('READ', 'FlowStream', async (req, res) => {
     let aResults = await SELECT.from('FlowStreamService.FlowStream', () => { '*' });
+    console.log(aFlowData);
     let aMockAndRealtimeData = [...aResults, ...aFlowData];
     return aMockAndRealtimeData.sort((a, b) => a.datetime > b.datetime);
   });

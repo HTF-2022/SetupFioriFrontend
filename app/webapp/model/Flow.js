@@ -10,6 +10,10 @@ sap.ui.define([
 			this.FlowStreams; // Raw flows
 			this.flowBars;
 			this.flowBarSelected = false;
+			this.flowLevels =  { 
+                flowLevels : { LOW: 12, NORMAL: 14, HIGH: 16}, // L/min
+                consumptionLevels: { LOW: 2, NORMAL: 3, HIGH: 4} // total consumption / day
+            };
 		},
 		saveToHistory: function () {
 			this.history = this.getJSONForHistory();
