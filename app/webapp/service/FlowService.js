@@ -25,16 +25,18 @@ sap.ui.define([
             });
         },
         getFlowHint: function (sFlowState) {
-            return axios.get(`${this.serviceUrl}\/FlowHint?$filter=state eq '${sFlowState}'`).then((oResult) => {
-                return oResult.data.d.results[0];
+            return axios.get(`${this.serviceUrl}\/FlowHint`).then((oResult) => {
+                let aQuotes = oResult.data.d.results;
+                let aFiltered = aQuotes.filter((oQuote) => oQuote.state === sFlowState);
+                return aFiltered[Math.floor(Math.random() * aFiltered.length)];
             });
         },
         getFlowQuote: function (bIsGood) {
             return axios.get(`${this.serviceUrl}\/GandalfQuote`).then((oResult) => {
-                let quotes = oResult.data.d.results;
-                let filterVal = bIsGood ? "GOOD" : "BAD";
-                let filtered = quotes.filter((q) => q.type === filterVal);
-                return filtered[Math.floor(Math.random() * filtered.length)];
+                let aQuotes = oResult.data.d.results;
+                let bFilterVal = bIsGood ? "GOOD" : "BAD";
+                let aFiltered = aQuotes.filter((oQuote) => oQuote.type === bFilterVal);
+                return aFiltered[Math.floor(Math.random() * aFiltered.length)];
             });
 
         }

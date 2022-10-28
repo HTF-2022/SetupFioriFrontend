@@ -59,6 +59,11 @@
     }
   },
   "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana-cloud"
+      }
+    },
     "[development]": {
       "requires": {
         "db": {
