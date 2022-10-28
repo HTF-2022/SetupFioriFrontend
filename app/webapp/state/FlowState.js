@@ -24,8 +24,10 @@ sap.ui.define([
         },
         getFlowHint: function(sFlowState){
             return new Promise((resolve, reject) => {
-				this.getService().getFlowHint(sFlowState).then((oResult)=>{
-                    this.updateFlow({oHint: oResult});
+				this.getService().getFlowHints().then((oResult)=>{
+                    let aFiltered = oResult.filter((oQuote) => oQuote.state === sFlowState);
+                    let oHint = aFiltered[Math.floor(Math.random() * aFiltered.length)];
+                    this.updateFlow({oHint: oHint});
                     resolve(oResult);
                 }).catch((oError)=>{
                     reject(oError);
@@ -34,8 +36,11 @@ sap.ui.define([
         },
         getFlowQuote: function(bIsGood){
             return new Promise((resolve, reject) => {
-				this.getService().getFlowQuote(bIsGood).then((oResult)=>{
-                    this.updateFlow({oQuote: oResult});
+				this.getService().getFlowQuotes().then((oResult)=>{
+                    let bFilterVal = bIsGood ? "GOOD" : "BAD";
+                    let aFiltered = oResult.filter((oQuote) => oQuote.type === bFilterVal);
+                    let oQuote = aFiltered[Math.floor(Math.random() * aFiltered.length)];
+                    this.updateFlow({oQuote: oQuote});
                     resolve(oResult);
                 }).catch((oError)=>{
                     reject(oError);
@@ -67,14 +72,6 @@ sap.ui.define([
         getService: function () {
             return this.service;
         }
-        // _getUniqueItemsByProperties: function (items, propNames) {
-        //     return items.filter((item, index, array) =>
-        //         index === array.findIndex(foundItem => this._isPropValuesEqual(foundItem, item, propNames))
-        //     );
-        // },
-        // _isPropValuesEqual: function (subject, target, propNames) {
-        //     return propNames.every(propName => subject[propName] === target[propName]);
-        // }
     });
     return FlowState;
 });
