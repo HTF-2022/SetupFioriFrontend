@@ -25,9 +25,11 @@ sap.ui.define([
         },
         getFlowHint: function(sFlowState){
             return new Promise((resolve, reject) => {
-				this.getService().getFlowHint(sFlowState).then((oResult)=>{
-                    this.updateFlow({oHint: oResult});
-                    resolve(oResult);
+				this.getService().getFlowHints().then((aResults)=>{
+                    let aFiltered = aResults.filter((oResult) => oResult.state === sFlowState);
+                    let oHint = aFiltered[Math.floor(Math.random() * aFiltered.length)];
+                    this.updateFlow({oHint: oHint});
+                    resolve(oHint);
                 }).catch((oError)=>{
                     reject(oError);
                 });
@@ -36,14 +38,17 @@ sap.ui.define([
 
         getFlowQuote: function(bIsGood){
             return new Promise((resolve, reject) => {
-				this.getService().getFlowQuote(bIsGood).then((oResult)=>{
+				this.getService().getFlowQuote(bIsGood).then((aResults)=>{
+                    let bFilterVal = bIsGood ? "GOOD" : "BAD";
+                    let aFiltered = aResults.filter((oResult) => oResult.type === bFilterVal);
+                    let oQuote = aFiltered[Math.floor(Math.random() * aFiltered.length)];
                     if ( !this.getProperty("flow").oQuote ) {
-                        this.updateFlow({oQuote: oResult});
+                        this.updateFlow({oQuote: oQuote});
                     }
-                    if ( this.getProperty("flow").oQuote && this.getProperty("flow").oQuote.type !== oResult.type ) {
-                        this.updateFlow({oQuote: oResult});
+                    if ( this.getProperty("flow").oQuote && this.getProperty("flow").oQuote.type !== oQuote.type ) {
+                        this.updateFlow({oQuote: oQuote});
                     } 
-                    resolve(oResult);
+                    resolve(oQuote);
                 }).catch((oError)=>{
                     reject(oError);
                 });
@@ -75,14 +80,6 @@ sap.ui.define([
         getService: function () {
             return this.service;
         }
-        // _getUniqueItemsByProperties: function (items, propNames) {
-        //     return items.filter((item, index, array) =>
-        //         index === array.findIndex(foundItem => this._isPropValuesEqual(foundItem, item, propNames))
-        //     );
-        // },
-        // _isPropValuesEqual: function (subject, target, propNames) {
-        //     return propNames.every(propName => subject[propName] === target[propName]);
-        // }
     });
     return FlowState;
 });

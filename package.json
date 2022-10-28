@@ -60,9 +60,6 @@
   },
   "cds": {
     "requires": {
-      "uaa": {
-        "kind": "xsuaa"
-      },
       "db": {
         "kind": "hana-cloud"
       }
@@ -79,11 +76,6 @@
             "srv"
           ]
         }
-      }
-    },
-    "auth": {
-      "passport": {
-        "strategy": "JWT"
       }
     }
   }

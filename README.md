@@ -1,25 +1,38 @@
-# Getting Started
+# HTF-2022
 
-Welcome to your new project.
+Welcome to the HTF-2022 project.
+This project consists of a middleware application built in Cloud Application Programming model (CAP), and a Fiori front-end application. Here’s how it’s structured:
 
-It contains these folders and files, following our recommended project layout:
+- App
+    - Resources -> all local images used in the application
+    - Webapp
+        - Controllers -> JavaScript code & eventhandlers behind the views
+        - Views -> XML views
+        - Services -> API-handling
+        - State -> Business logic
+        - Model -> Object properties & Object functions
+- Db
+    - Datamodel.cds -> Database structure
+    - Data folder -> test data
+- Srv
+    - Service.js -> IoT- & other API-handling
+
+Or in short:
 
 File or Folder | Purpose
 ---------|----------
 `app/` | content for UI frontends goes here
 `db/` | your domain models and data go here
 `srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
 
+## How to:
 
-## Next Steps
+- Install the necessary dependencies by running:
+    - "npm i" in root folder
+    - "npm i" in "/app" folder
 
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+- Start the application with "npm run start"
+- You'll find your app listening on "http://localhost:4004".
+- Go to "/webapp/index.html" to open your UI.
 
-
-## Learn More
-
-Learn more at https://cap.cloud.sap/docs/get-started/.
+- Deploy your application with "npm run deploy:dev".

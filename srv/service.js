@@ -56,6 +56,8 @@ function getRndInteger(min, max) {
 client.subscribe('/flowMeter');
 
 function getTestData(){
+  let dTime = new Date().getTime();
+  let dDate = new Date(dTime + 2 * 60 * 60 * 1000);
   aFlowData.push({
     flow: getRndInteger(8, 18), //  low 8-10; normal 10-14, high 14-16 current
     datetime: new Date(),
@@ -64,7 +66,7 @@ function getTestData(){
   setTimeout(function(){ getTestData() }, 2000)
 }
 
-//getTestData();
+getTestData();
 
 module.exports = (srv) => {
   srv.on('READ', 'FlowStream', async (req, res) => {
@@ -75,13 +77,12 @@ module.exports = (srv) => {
   });
 
   srv.on('READ', 'FlowHint', async (req, res) => {
-    let aHints = await SELECT.from('FlowStreamService.FlowHint', () => { '*' }).where({ state: req.query.SELECT.where[2].val });
-    let oResult = aHints[getRndInteger(0, aHints.length - 1)];
-    return [oResult];
+    let aQuotes = await SELECT.from('FlowStreamService.FlowHint', () => { '*' });
+    return aQuotes;
   });
 
   srv.on('READ', 'GandalfQuote', async (req, res) => {
-    let quotes = await SELECT.from('FlowStreamService.GandalfQuote', () => { '*' });
-    return quotes;
+    let aQuotes = await SELECT.from('FlowStreamService.GandalfQuote', () => { '*' });
+    return aQuotes;
   });
 }

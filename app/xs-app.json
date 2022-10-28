@@ -1,12 +1,12 @@
 {
   "welcomeFile": "/index.html",
-  "authenticationMethod": "route",
+  "authenticationMethod": "none",
   "routes": [
     {
       "source": "^/v2/(.*)$",
       "target": "/v2/$1",
       "destination": "SetupFioriFrontend-app-srv",
-      "authenticationType": "xsuaa",
+      "authenticationType": "none",
       "csrfProtection": false
     },
     {
@@ -25,7 +25,7 @@
       "source": "^(.*)$",
       "target": "$1",
       "service": "html5-apps-repo-rt",
-      "authenticationType": "xsuaa"
+      "authenticationType": "none"
     }
   ]
 }
