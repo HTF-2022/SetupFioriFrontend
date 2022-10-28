@@ -56,15 +56,17 @@ function getRndInteger(min, max) {
 client.subscribe('/flowMeter');
 
 function getTestData(){
+  let dDate = new Date();
+  dDate.addHours(2);
   aFlowData.push({
     flow: getRndInteger(0, 300) / 100,
-    datetime: new Date(),
+    datetime: dDate,
     descr: "flow in L/min"
   });
   setTimeout(function(){getTestData()}, 2000)
 }
 
-//getTestData();
+getTestData();
 
 module.exports = (srv) => {
   srv.on('READ', 'FlowStream', async (req, res) => {

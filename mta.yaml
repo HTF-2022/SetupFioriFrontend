@@ -7,7 +7,6 @@ modules:
     type: nodejs
     path: gen/srv
     requires:
-      - name: SetupFioriFrontend-auth
       - name: SetupFioriFrontend-db
     provides:
       - name: srv-api
@@ -27,10 +26,6 @@ modules:
   - name: SetupFioriFrontend-destinations
     type: com.sap.application.content
     requires:
-      - name: SetupFioriFrontend-auth
-        parameters:
-          service-key:
-            name: SetupFioriFrontend-uaa-key
       - name: SetupFioriFrontend-html5-repo-host
         parameters:
           service-key:
@@ -43,20 +38,9 @@ modules:
       content:
         instance:
           destinations:
-            - Authentication: OAuth2UserTokenExchange
-              Name: SetupFioriFrontend-app-srv
-              TokenServiceInstanceName: SetupFioriFrontend-auth
-              TokenServiceKeyName: SetupFioriFrontend-uaa-key
-              URL: ~{srv-api/srv-url}
-              sap.cloud.service: SetupFioriFrontend.service
             - Name: SetupFioriFrontend-html5-repo-host
               ServiceInstanceName: SetupFioriFrontend-html5-repo-host
               ServiceKeyName: SetupFioriFrontend-html5-repo-host-key
-              sap.cloud.service: SetupFioriFrontend.service
-            - Authentication: OAuth2UserTokenExchange
-              Name: SetupFioriFrontend-auth
-              ServiceInstanceName: SetupFioriFrontend-auth
-              ServiceKeyName: SetupFioriFrontend-uaa-key
               sap.cloud.service: SetupFioriFrontend.service
           existing_destinations_policy: update
     build-parameters:
@@ -86,20 +70,6 @@ modules:
         - npm run build:cf
       supported-platforms: []
 resources:
-  - name: SetupFioriFrontend-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      config:
-        role-collections:
-          - name: HTF2022_Viewer-${space}
-            description: View HTF2022
-            role-template-references:
-              - $XSAPPNAME.HTF2022_Viewer
-        tenant-mode: dedicated
-        xsappname: SetupFioriFrontend-${org}-${space}
-      path: ./xs-security.json
-      service: xsuaa
-      service-plan: application
   - name: SetupFioriFrontend-db
     type: com.sap.xs.hdi-container
     parameters:
