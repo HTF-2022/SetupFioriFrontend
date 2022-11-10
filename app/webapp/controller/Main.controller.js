@@ -48,30 +48,6 @@ sap.ui.define([
 			let flowLevelHigh = this.FlowState.getProperty("flow").flowLevels.flowLevels.HIGH;
 			let currFlowCheck = currData.flow < flowLevelHigh;
 			this.FlowState.getFlowQuote(currFlowCheck);
-
-			/*
-			let prevData = aFlows[aFlows.length - 2];
-			let currData = aFlows[aFlows.length - 1];
-			console.log("prev & curr", prevData, currData);
-			
-			if (currData) {
-				let flowLevelHigh = this.FlowState.getProperty("flow").flowLevels.flowLevels.HIGH;
-				console.log("lvl", flowLevelHigh);
-				let currFlowCheck = currData.flow < flowLevelHigh;
-				console.log("curCheck", currFlowCheck);
-				if (!prevData) {
-					this.FlowState.getFlowQuote(currFlowCheck);
-				} else {
-					let prevFlowCheck = prevData.flow < flowLevelHigh;
-					console.log("prevFlowCheck", prevFlowCheck);
-					if ( prevFlowCheck !== currFlowCheck) {
-						this.FlowState.getFlowQuote(currFlowCheck);
-					} else {
-						this.FlowState.getFlowQuote(prevFlowCheck);
-					}
-
-				}
-			}*/
 		},
 
 		_handleAverageConsumptions: function(){
@@ -200,9 +176,7 @@ sap.ui.define([
 				sValueState = "Error";
 			} else if(iTotal > iTotalPast){ // consumption has risen a bit
 				sValueState = "Critical";
-			} /*else if (iTotal === iTotalPast){ // consumption is same
-				sValueState = "Neutral";
-			}*/ else { // iTotal < iTotalPast // consumption is less than before
+			} else { // iTotal < iTotalPast // consumption is less than before
 				sValueState = "Good";
 			}
 			let sIndicator;
@@ -440,15 +414,14 @@ sap.ui.define([
 					let currConsumption = (((prev.flow + curr.flow) / 2) / 60) * ((curr.datetime.getTime() - prev.datetime.getTime()) / 1000); //diff time 
 					iTotal += currConsumption;
 				}
-			};
-			
+			}
 			return iTotal;
 		},
 
 		formatDate: function(dDate){
 			return [
-			  	this.padTo2Digits(dDate.getDate()),
-			  	this.padTo2Digits(dDate.getMonth() + 1),
+				this.padTo2Digits(dDate.getDate()),
+				this.padTo2Digits(dDate.getMonth() + 1),
 				dDate.getFullYear()
 			].join('/');
 		},
