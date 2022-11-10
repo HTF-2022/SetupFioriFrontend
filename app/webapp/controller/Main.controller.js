@@ -37,49 +37,6 @@ sap.ui.define([
 			});
 		},
 
-		tileValueformatter: function(sValue){
-			const iValue = parseFloat(sValue);
-			if(iValue > 1000000){
-				return iValue / 1000000;
-			} else if(iValue > 1000){
-				return iValue / 1000;
-			} else {
-				return iValue;
-			}
-		},
-
-		tileScaleformatter: function(sValue){
-			const iValue = parseFloat(sValue);
-			if(iValue > 1000000){
-				return "M";
-			} else if(iValue > 1000){
-				return "K";
-			} else {
-				return "";
-			}
-		},
-
-		interactiveBarChartSelectionChanged: function(oEvent){
-			const oBar = oEvent.getParameter("bar");
-			this._handleBarSelectedState(oBar);
-			this._handleLineGraph(oBar.oBindingContexts.reg.getObject().date);
-		},
-
-		_handleBarSelectedState: function(oBar){
-			const flowBars = this.FlowState.getProperty('flow').flowBars;
-			let flowBarSelected = false; // default
-			flowBars.map((flowBar)=>{
-				if(this.dateFormatter(flowBar.date) === oBar.getLabel()){
-					flowBarSelected = true;
-					flowBar.selected = true;
-					this.FlowState.updateFlow({selectedFlowBar: flowBar});
-				} else {
-					flowBar.selected = false;
-				}
-			});
-			this.FlowState.updateFlow({flowBarSelected: flowBarSelected});
-		},
-
 		_handleLineGraph: function(dDate){
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
 			const aSelectedFlowStreams = aFlowStreams.slice(-25);
@@ -272,10 +229,10 @@ sap.ui.define([
 			const dToday = new Date();
 			const dPastDate = dToday.addDays(-31);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
-			const sLastMonth = `${this.tileValueformatter(oFlowModel.totalConsumptionMonthPast)} ${this.tileScaleformatter(oFlowModel.totalConsumptionMonthPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
+			const sLastMonth = `${oFlowModel.totalConsumptionMonthPast} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
 			const iDifference = (oFlowModel.totalConsumptionMonth - oFlowModel.totalConsumptionMonthPast);
 			const bState = iDifference > 0;
-			const sDifference = `${this.tileValueformatter(iDifference)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
+			const sDifference = `${iDifference} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("totalConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("thisMonth"),
@@ -297,10 +254,10 @@ sap.ui.define([
 			const dToday = new Date();
 			const dPastDate = dToday.addDays(-7);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
-			const sLastMonth = `${this.tileValueformatter(oFlowModel.totalConsumptionWeekPast)} ${this.tileScaleformatter(oFlowModel.totalConsumptionWeekPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
+			const sLastMonth = `${oFlowModel.totalConsumptionWeekPast} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
 			const iDifference = (oFlowModel.totalConsumptionWeek - oFlowModel.totalConsumptionWeekPast);
 			const bState = iDifference > 0;
-			const sDifference = `${this.tileValueformatter(iDifference)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
+			const sDifference = `${iDifference} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("totalConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("thisWeek"),
@@ -322,10 +279,10 @@ sap.ui.define([
 			const dToday = new Date();
 			const dPastDate = dToday.addDays(-1);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
-			const sLastMonth = `${this.tileValueformatter(oFlowModel.totalConsumptionTodayPast)} ${this.tileScaleformatter(oFlowModel.totalConsumptionTodayPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
+			const sLastMonth = `${oFlowModel.totalConsumptionTodayPast} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			const iDifference = (oFlowModel.totalConsumptionToday - oFlowModel.totalConsumptionTodayPast);
 			const bState = iDifference > 0;
-			const sDifference = `${this.tileValueformatter(iDifference)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
+			const sDifference = `${iDifference} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("totalConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("last24Hours"),
@@ -347,10 +304,10 @@ sap.ui.define([
 			const dToday = new Date();
 			const dPastDate = dToday.addDays(-31);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
-			const sLastMonth = `${this.tileValueformatter(oFlowModel.averageConsumptionMonthPast).toFixed(2)} ${this.tileScaleformatter(oFlowModel.averageConsumptionMonthPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
+			const sLastMonth = `${oFlowModel.averageConsumptionMonthPast.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			const iDifference = (oFlowModel.averageConsumptionMonth - oFlowModel.averageConsumptionMonthPast);
 			const bState = iDifference > 0;
-			const sDifference = `${this.tileValueformatter(iDifference).toFixed(2)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
+			const sDifference = `${iDifference.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("averageConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("thisMonth"),
@@ -372,10 +329,10 @@ sap.ui.define([
 			const dToday = new Date();
 			const dPastDate = dToday.addDays(-7);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
-			const sLastMonth = `${this.tileValueformatter(oFlowModel.averageConsumptionWeekPast).toFixed(2)} ${this.tileScaleformatter(oFlowModel.averageConsumptionWeekPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
+			const sLastMonth = `${oFlowModel.averageConsumptionWeekPast.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			const iDifference = (oFlowModel.averageConsumptionWeek - oFlowModel.averageConsumptionWeekPast);
 			const bState = iDifference > 0;
-			const sDifference = `${this.tileValueformatter(iDifference).toFixed(2)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
+			const sDifference = `${iDifference.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("averageConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("thisWeek"),
@@ -397,10 +354,10 @@ sap.ui.define([
 			const dToday = new Date();
 			const dPastDate = dToday.addDays(-1);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
-			const sLastMonth = `${this.tileValueformatter(oFlowModel.averageConsumptionTodayPast).toFixed(2)} ${this.tileScaleformatter(oFlowModel.averageConsumptionTodayPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitHours")})`;
+			const sLastMonth = `${oFlowModel.averageConsumptionTodayPast.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitHours")})`;
 			const iDifference = (oFlowModel.averageConsumptionToday - oFlowModel.averageConsumptionTodayPast);
 			const bState = iDifference > 0;
-			const sDifference = `${this.tileValueformatter(iDifference).toFixed(2)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitHours")})`;
+			const sDifference = `${iDifference.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitHours")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("averageConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("today"),
