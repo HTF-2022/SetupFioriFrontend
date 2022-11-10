@@ -26,11 +26,12 @@ sap.ui.define([
 		},
 
 		readData: function(FlowState){
-			// #BASIC
+			// BASIC
 			// FlowState.getFlowStreams() returns the newest available dataset.
 			// The other functions fill the different graphs with data. 
 			// At the moment, this only happens once at the start of the application.
 			// Make it so that every 2 seconds, the graphs will be refreshed with new data.
+
 			FlowState.getFlowStreams().then((aFlows) =>{
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
@@ -86,15 +87,17 @@ sap.ui.define([
 
 		_handleLineGraph: function(){
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
-			const aSelectedFlowStreams = aFlowStreams.slice(-25);
-			this.FlowState.updateFlow({flowPoints: aSelectedFlowStreams});
+			// BASIC
+			// Only visualize the last 25 values.
+
+			this.FlowState.updateFlow({flowPoints: aFlowStreams});
 		},
 
 		_handleWizard: function(aFlows) {
-			let currData = aFlows[aFlows.length - 1];
-			let flowLevelHigh = this.FlowState.getProperty("flow").flowLevels.flowLevels.HIGH;
-			let currFlowCheck = currData.flow < flowLevelHigh;
-			this.FlowState.getFlowQuote(currFlowCheck);
+			// ADVANCED
+			// Get the last data point from aFlows and derive from its flow value if its excessive waste or not.
+			// The flowLevels can be found in the flow model via flowState.flow.flowLevels
+			// Check method getFlowQuote in the FlowState to see how it should be used.
 		},
 
 		_handleAverageConsumptions: function(){
@@ -108,105 +111,112 @@ sap.ui.define([
 			this._handleTotalWeek();
 			this._handleTotalToday();
 		},
+		
+		_handleTotalMonth: function(){
+			// BASIC
+			// Calculate the total consumption of this month.
+			// Hint: Use method _countConsumption
+
+			this.FlowState.updateFlow({totalConsumptionMonth: 0});
+
+			// ADVANCED
+			// Calculate the difference in consumption between last month and this month.
+			this._handleTotalMonthProgression();
+		},
+
+		_handleTotalMonthProgression: function(iTotal){ // ADVANCED
+			// Hint: Calculate consumption of last month using _countConsumption 
+			// Hint: Use _compareConsumption for your comparisons.
+			this.FlowState.updateFlow({totalConsumptionMonthPast: 0, totalConsumptionMonthValueState: '', totalConsumptionMonthIndicator: ''});
+		},
 
 		_handleAverageMonth: function(){
 			const iTotal = this.FlowState.getProperty("flow").totalConsumptionMonth;
-			const iAverage = iTotal / 31;
-			this.FlowState.updateFlow({averageConsumptionMonth: iAverage});
-			this._handleAverageMonthProgression(iAverage);
-			return iAverage;
+			// BASIC
+			// Calculate monthly average
+			this.FlowState.updateFlow({averageConsumptionMonth: 0});
+
+			// ADVANCED
+			// Calculate the difference in consumption between last month and this month.
+			this._handleAverageMonthProgression();
 		},
 
-		_handleAverageMonthProgression: function(iAverage){
-			const iTotalPast = this.FlowState.getProperty("flow").totalConsumptionMonthPast;
-			const iAveragePast = iTotalPast / 31;
-			const oResult = this._compareConsumption(iAveragePast, iAverage);
-			this.FlowState.updateFlow({averageConsumptionMonthPast: iAveragePast, averageConsumptionMonthValueState: oResult.sValueState, averageConsumptionMonthIndicator: oResult.sIndicator});
-			return iAveragePast;
+		_handleAverageMonthProgression: function(iAverage){ // ADVANCED
+			// Hint: Calculate average consumption of last month 
+			// Hint: Use method _compareConsumption for your calculations.
+			this.FlowState.updateFlow({averageConsumptionMonthPast: 0, averageConsumptionMonthValueState: '', averageConsumptionMonthIndicator: ''});
 		},
 
-		_handleTotalMonth: function(){
-			const iTotal = this._countConsumption(new Date(), 31);
-			this.FlowState.updateFlow({totalConsumptionMonth: iTotal});
-			this._handleTotalMonthProgression(iTotal);
-			return iTotal;
+		_handleTotalWeek: function(){
+			// BASIC
+			// Calculate the total consumption of this week.
+			// Hint: Use method _countConsumption
+			this.FlowState.updateFlow({totalConsumptionWeek: 0});
+
+			// ADVANCED
+			// Calculate the difference in consumption between last week and this week.
+			this._handleTotalWeekProgression();
 		},
 
-		_handleTotalMonthProgression: function(iTotal){
-			const dToday = new Date()
-			const dPastDate = dToday.addDays(-31)
-			const iTotalPast = this._countConsumption(dPastDate, 31);
-			const oResult = this._compareConsumption(iTotalPast, iTotal);
-			this.FlowState.updateFlow({totalConsumptionMonthPast: iTotalPast, totalConsumptionMonthValueState: oResult.sValueState, totalConsumptionMonthIndicator: oResult.sIndicator});
-			return iTotalPast;
+		_handleTotalWeekProgression: function(iTotal){ // ADVANCED
+			// Hint: Calculate consumption of last month using _countConsumption 
+			// Hint: Use _compareConsumption for your comparisons.
+			this.FlowState.updateFlow({totalConsumptionWeekPast: 0, totalConsumptionWeekValueState: '', totalConsumptionWeekIndicator: ''});
 		},
 
 		_handleAverageWeek: function(){
 			const iTotal = this.FlowState.getProperty("flow").totalConsumptionWeek;
-			const iAverage = iTotal / 7;
-			this.FlowState.updateFlow({averageConsumptionWeek: iAverage});
-			this._handleAverageWeekProgression(iAverage);
-			return iAverage;
-		},
+			// BASIC
+			// Calculate weekly average
+			this.FlowState.updateFlow({averageConsumptionWeek: 0});
 
+			// ADVANCED
+			// Calculate the difference in consumption between last week and this week.
+			this._handleAverageWeekProgression();
+		},
 		
-		_handleAverageWeekProgression: function(iAverage){
-			const iTotalPast = this.FlowState.getProperty("flow").totalConsumptionWeekPast;
-			const iAveragePast = iTotalPast / 7;
-			const oResult = this._compareConsumption(iAveragePast, iAverage);
-			this.FlowState.updateFlow({averageConsumptionWeekPast: iAveragePast, averageConsumptionWeekValueState: oResult.sValueState, averageConsumptionWeekIndicator: oResult.sIndicator});
-			return iAveragePast;
+		_handleAverageWeekProgression: function(iAverage){ // ADVANCED
+			// Hint: Calculate average consumption of last week 
+			// Hint: Use method _compareConsumption for your calculations.
+			this.FlowState.updateFlow({averageConsumptionWeekPast: 0, averageConsumptionWeekValueState: '', averageConsumptionWeekIndicator: ''});
 		},
 
-		_handleTotalWeek: function(){
-			const iTotal = this._countConsumption(new Date(), 7);
-			this.FlowState.updateFlow({totalConsumptionWeek: iTotal});
-			this._handleTotalWeekProgression(iTotal);
-			return iTotal;
+		_handleTotalToday: function(){
+			// BASIC
+			// calculate the total consumption of today.
+			// Hint: Use method _countConsumption
+			
+			this.FlowState.updateFlow({totalConsumptionToday: 0});
+
+			// ADVANCED 
+			// Calculate the difference in consumption between yesterday and today.
+			this._handleTotalTodayProgression();
 		},
 
-		_handleTotalWeekProgression: function(iTotal){
-			const dToday = new Date()
-			const dPastDate = dToday.addDays(-7)
-			const iTotalPast = this._countConsumption(dPastDate, 7);
-			const oResult = this._compareConsumption(iTotalPast, iTotal);
-			this.FlowState.updateFlow({totalConsumptionWeekPast: iTotalPast, totalConsumptionWeekValueState: oResult.sValueState, totalConsumptionWeekIndicator: oResult.sIndicator});
-			return iTotalPast;
+		_handleTotalTodayProgression: function(iTotal){ // ADVANCED
+			// Hint: Calculate consumption of last month using _countConsumption 
+			// Hint: Use _compareConsumption for your comparisons.
+			this.FlowState.updateFlow({totalConsumptionTodayPast: 0, totalConsumptionTodayValueState: '', totalConsumptionTodayIndicator: ''});
 		},
 
 		_handleAverageToday: function(){
 			const iTotal = this.FlowState.getProperty("flow").totalConsumptionToday;
-			const iAverage = iTotal / 24; // 24 hours
-			this.FlowState.updateFlow({averageConsumptionToday: iAverage});
-			this._handleAverageTodayProgression(iAverage);
-			return iAverage;
+			// BASIC
+			// Calculate todays average	consumption		
+			this.FlowState.updateFlow({averageConsumptionToday: 0});
+
+			// ADVANCED
+			// Calculate the difference in consumption between last week and this week.
+			this._handleAverageTodayProgression();
 		},
 
 		_handleAverageTodayProgression: function(iAverage){
-			const iTotalPast = this.FlowState.getProperty("flow").totalConsumptionTodayPast;
-			const iAveragePast = iTotalPast / 24; // 24 hours
-			const oResult = this._compareConsumption(iAveragePast, iAverage);
-			this.FlowState.updateFlow({averageConsumptionTodayPast: iAveragePast, averageConsumptionTodayValueState: oResult.sValueState, averageConsumptionTodayIndicator: oResult.sIndicator});
-			return iAveragePast;
+			// Hint: Calculate average consumption of last week 
+			// Hint: Use method _compareConsumption for your calculations.
+			this.FlowState.updateFlow({averageConsumptionTodayPast: 0, averageConsumptionTodayValueState: '', averageConsumptionTodayIndicator: ''});
 		},
 
-		_handleTotalToday: function(){
-			const iTotal = this._countConsumption(new Date(), 1);
-			this.FlowState.updateFlow({totalConsumptionToday: iTotal});
-			this._handleTotalTodayProgression(iTotal);
-			return iTotal;
-		},
-
-		_handleTotalTodayProgression: function(iTotal){
-			const dToday = new Date()
-			const dPastDate = dToday.addDays(-1)
-			const iTotalPast = this._countConsumption(dPastDate, 1);
-			const oResult = this._compareConsumption(iTotalPast, iTotal);
-			this.FlowState.updateFlow({totalConsumptionTodayPast: iTotalPast, totalConsumptionTodayValueState: oResult.sValueState, totalConsumptionTodayIndicator: oResult.sIndicator});
-			return iTotalPast;
-		},
-
-		_countConsumption: function(dStartDate, iDuration){
+		_countConsumption: function(dStartDate, iDuration){ // duration in # days
 			const dXDaysAgo = dStartDate.addDays(-iDuration);
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
 			
@@ -223,9 +233,7 @@ sap.ui.define([
 				sValueState = "Error";
 			} else if(iTotal > iTotalPast){ // consumption has risen a bit
 				sValueState = "Critical";
-			} /*else if (iTotal === iTotalPast){ // consumption is same
-				sValueState = "Neutral";
-			}*/ else { // iTotal < iTotalPast // consumption is less than before
+			} else { // iTotal < iTotalPast // consumption is less than before
 				sValueState = "Good";
 			}
 			let sIndicator;
@@ -253,7 +261,11 @@ sap.ui.define([
 			const dPastDate = dToday.addDays(-31);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
 			const sLastMonth = `${this.tileValueformatter(oFlowModel.totalConsumptionMonthPast)} ${this.tileScaleformatter(oFlowModel.totalConsumptionMonthPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
-			const iDifference = (oFlowModel.totalConsumptionMonth - oFlowModel.totalConsumptionMonthPast);
+			
+			// BASIC
+			// Calculate the difference between the total consumption of this month and total consumption of last month
+			const iDifference = 0;
+
 			const bState = iDifference > 0;
 			const sDifference = `${this.tileValueformatter(iDifference)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
 			this.FlowState.updateFlow({
@@ -278,7 +290,11 @@ sap.ui.define([
 			const dPastDate = dToday.addDays(-7);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
 			const sLastMonth = `${this.tileValueformatter(oFlowModel.totalConsumptionWeekPast)} ${this.tileScaleformatter(oFlowModel.totalConsumptionWeekPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
-			const iDifference = (oFlowModel.totalConsumptionWeek - oFlowModel.totalConsumptionWeekPast);
+			
+			// BASIC
+			// Calculate the difference between the total consumption of this week and total consumption of last week
+			const iDifference = 0;
+			
 			const bState = iDifference > 0;
 			const sDifference = `${this.tileValueformatter(iDifference)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
 			this.FlowState.updateFlow({
@@ -303,7 +319,11 @@ sap.ui.define([
 			const dPastDate = dToday.addDays(-1);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
 			const sLastMonth = `${this.tileValueformatter(oFlowModel.totalConsumptionTodayPast)} ${this.tileScaleformatter(oFlowModel.totalConsumptionTodayPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
-			const iDifference = (oFlowModel.totalConsumptionToday - oFlowModel.totalConsumptionTodayPast);
+			
+			// BASIC
+			// Calculate the difference between the total consumption of today and total consumption of yesterday
+			const iDifference = 0;
+			
 			const bState = iDifference > 0;
 			const sDifference = `${this.tileValueformatter(iDifference)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			this.FlowState.updateFlow({
@@ -328,7 +348,11 @@ sap.ui.define([
 			const dPastDate = dToday.addDays(-31);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
 			const sLastMonth = `${this.tileValueformatter(oFlowModel.averageConsumptionMonthPast).toFixed(2)} ${this.tileScaleformatter(oFlowModel.averageConsumptionMonthPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
-			const iDifference = (oFlowModel.averageConsumptionMonth - oFlowModel.averageConsumptionMonthPast);
+			
+			// BASIC
+			// Calculate the difference between the average consumption of this month and average consumption of last month
+			const iDifference = 0;
+			
 			const bState = iDifference > 0;
 			const sDifference = `${this.tileValueformatter(iDifference).toFixed(2)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			this.FlowState.updateFlow({
@@ -353,7 +377,11 @@ sap.ui.define([
 			const dPastDate = dToday.addDays(-7);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
 			const sLastMonth = `${this.tileValueformatter(oFlowModel.averageConsumptionWeekPast).toFixed(2)} ${this.tileScaleformatter(oFlowModel.averageConsumptionWeekPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
+			
+			// BASIC
+			// Calculate the difference between the average consumption of this week and average consumption of last week
 			const iDifference = (oFlowModel.averageConsumptionWeek - oFlowModel.averageConsumptionWeekPast);
+			
 			const bState = iDifference > 0;
 			const sDifference = `${this.tileValueformatter(iDifference).toFixed(2)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			this.FlowState.updateFlow({
@@ -378,7 +406,11 @@ sap.ui.define([
 			const dPastDate = dToday.addDays(-1);
 			const sTimeSpan = `${this.formatDate(dPastDate)} - ${this.formatDate(dToday)}`;
 			const sLastMonth = `${this.tileValueformatter(oFlowModel.averageConsumptionTodayPast).toFixed(2)} ${this.tileScaleformatter(oFlowModel.averageConsumptionTodayPast)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitHours")})`;
-			const iDifference = (oFlowModel.averageConsumptionToday - oFlowModel.averageConsumptionTodayPast);
+			
+			// BASIC
+			// Calculate the difference between the average consumption of today and average consumption of yesterday
+			const iDifference = 0;
+			
 			const bState = iDifference > 0;
 			const sDifference = `${this.tileValueformatter(iDifference).toFixed(2)} ${this.tileScaleformatter(iDifference)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitHours")})`;
 			this.FlowState.updateFlow({
@@ -419,17 +451,17 @@ sap.ui.define([
 			const oFlow = this.FlowState.getProperty("flow");
 			const sFlowState = oFlow.dialogTileValueColor;
 			let oFlowHint = await this.FlowState.getFlowHint(sFlowState);
-			MessageToast.show(`${oFlowHint.message}`);
+
+			// ADVANCED
+			// Show something on the screen using the received hint. Be creative!
 		},
 
 		createInteractiveBarChart: function(aFlows){
 			let aFlowBars = [];
-			const dToday = new Date();
-			const d7DaysAgo = dToday.addDays(-6); // 6 days + today
-			let aFilterFlows = aFlows.filter((oFlow)=>{
-				let iFlowDate = oFlow.datetime;
-				return iFlowDate > d7DaysAgo && iFlowDate <= dToday; // Past 7 days including today
-			})
+
+			// BASIC
+			// Filter the data to only get values of the past week (including today)
+			let aFilterFlows = [];
 
 			let mMappedFilterFlows = new Map();
 
@@ -463,15 +495,14 @@ sap.ui.define([
 					let currConsumption = (((prev.flow + curr.flow) / 2) / 60) * ((curr.datetime.getTime() - prev.datetime.getTime()) / 1000); //diff time 
 					iTotal += currConsumption;
 				}
-			};
-			
+			}
 			return iTotal;
 		},
 
 		formatDate: function(dDate){
 			return [
-			  	this.padTo2Digits(dDate.getDate()),
-			  	this.padTo2Digits(dDate.getMonth() + 1),
+				this.padTo2Digits(dDate.getDate()),
+				this.padTo2Digits(dDate.getMonth() + 1),
 				dDate.getFullYear()
 			].join('/');
 		},

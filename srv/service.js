@@ -29,10 +29,10 @@ client.on('message', function (topic, message) {
   let obj = JSON.parse(jsonS);
   obj.datetime = new Date(obj.datetime);
 
-  // #BASIC
+  // BASIC
   // Incoming logs should be added to the existing dataset (aDataset)
 
-  // #ADVANCED
+  // ADVANCED
   // We only want to register useful data, so negate consecutive flows with zero debit.
   // We do want to know when the flow starts and stops though.
   // Example: 
@@ -40,7 +40,7 @@ client.on('message', function (topic, message) {
     // Result:        0 - 1 - 2 - 1 - 0 -               - 0 - 1 - 2 - 3
 });
 
-// #BASIC
+// BASIC
 // Subscribe to topic '/flowMeter'
 
 // OPTIONAL: Only use when IoT device is not running
