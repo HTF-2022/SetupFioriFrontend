@@ -81,7 +81,7 @@ sap.ui.define([
 			this.FlowState.updateFlow({flowBarSelected: flowBarSelected});
 		},
 
-		_handleLineGraph: function(dDate){
+		_handleLineGraph: function(){
 			const aFlowStreams = this.FlowState.getProperty("flow").FlowStreams;
 			const aSelectedFlowStreams = aFlowStreams.slice(-25);
 			this.FlowState.updateFlow({flowPoints: aSelectedFlowStreams});
@@ -92,30 +92,6 @@ sap.ui.define([
 			let flowLevelHigh = this.FlowState.getProperty("flow").flowLevels.flowLevels.HIGH;
 			let currFlowCheck = currData.flow < flowLevelHigh;
 			this.FlowState.getFlowQuote(currFlowCheck);
-
-			/*
-			let prevData = aFlows[aFlows.length - 2];
-			let currData = aFlows[aFlows.length - 1];
-			console.log("prev & curr", prevData, currData);
-			
-			if (currData) {
-				let flowLevelHigh = this.FlowState.getProperty("flow").flowLevels.flowLevels.HIGH;
-				console.log("lvl", flowLevelHigh);
-				let currFlowCheck = currData.flow < flowLevelHigh;
-				console.log("curCheck", currFlowCheck);
-				if (!prevData) {
-					this.FlowState.getFlowQuote(currFlowCheck);
-				} else {
-					let prevFlowCheck = prevData.flow < flowLevelHigh;
-					console.log("prevFlowCheck", prevFlowCheck);
-					if ( prevFlowCheck !== currFlowCheck) {
-						this.FlowState.getFlowQuote(currFlowCheck);
-					} else {
-						this.FlowState.getFlowQuote(prevFlowCheck);
-					}
-
-				}
-			}*/
 		},
 
 		_handleAverageConsumptions: function(){
