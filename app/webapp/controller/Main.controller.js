@@ -25,16 +25,19 @@ sap.ui.define([
 			this.readData(this.FlowState, this);
 		},
 
-		readData: function(FlowState, that){
+		readData: function(FlowState){
+			// #BASIC
+			// FlowState.getFlowStreams() returns the newest available dataset.
+			// The other functions fill the different graphs with data. 
+			// At the moment, this only happens once at the start of the application.
+			// Make it so that every 2 seconds, the graphs will be refreshed with new data.
 			FlowState.getFlowStreams().then((aFlows) =>{
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
-				this._handleLineGraph(dToday);
 				this._handleWizard(aFlows);
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
 				this._handleLineGraph(dToday);
-				setTimeout(function(){that.readData(FlowState, that)}, 2000);
 			});
 		},
 
