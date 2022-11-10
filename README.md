@@ -30,12 +30,12 @@ File or Folder | Purpose
 - Install the necessary dependencies by running:
     - "npm i" in root folder
     - "npm i" in "/app" folder
+- Activate your SQLite database by running:
+    - "npm run local:db" in root folder
 
 - Start the application with "npm run start"
 - You'll find your app listening on "http://localhost:4004".
 - Go to "/webapp/index.html" to open your UI.
-
-- Deploy your application with "npm run deploy:dev".
 
 ## MQTT JS client example
 ```js
