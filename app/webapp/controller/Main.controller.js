@@ -29,7 +29,6 @@ sap.ui.define([
 			FlowState.getFlowStreams().then((aFlows) =>{
 				this.createInteractiveBarChart(aFlows);
 				const dToday = new Date();
-				this._handleLineGraph(dToday);
 				this._handleWizard(aFlows);
 				this._handleTotalConsumptions();
 				this._handleAverageConsumptions();
