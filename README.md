@@ -25,6 +25,15 @@ File or Folder | Purpose
 `db/` | your domain models and data go here
 `srv/` | your service models and code go here
 
+## Assignments
+
+You can find assignments in:
+- Main controller (javascript)
+- Main view (xml)
+- CAP service (javascript)
+
+Hint: Search for "BASIC" or "ADVANCED" on project level. This will find all assignments!
+
 ## How to:
 
 - Install the necessary dependencies by running:
