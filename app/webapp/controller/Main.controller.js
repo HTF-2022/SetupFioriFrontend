@@ -206,7 +206,7 @@ sap.ui.define([
 			const sLastMonth = `${oFlowModel.totalConsumptionMonthPast} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
 			const iDifference = (oFlowModel.totalConsumptionMonth - oFlowModel.totalConsumptionMonthPast);
 			const bState = iDifference > 0;
-			const sDifference = `${iDifference} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
+			const sDifference = `${iDifference.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitMonth")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("totalConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("thisMonth"),
@@ -231,7 +231,7 @@ sap.ui.define([
 			const sLastMonth = `${oFlowModel.totalConsumptionWeekPast} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
 			const iDifference = (oFlowModel.totalConsumptionWeek - oFlowModel.totalConsumptionWeekPast);
 			const bState = iDifference > 0;
-			const sDifference = `${iDifference} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
+			const sDifference = `${iDifference.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitWeek")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("totalConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("thisWeek"),
@@ -256,7 +256,7 @@ sap.ui.define([
 			const sLastMonth = `${oFlowModel.totalConsumptionTodayPast} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			const iDifference = (oFlowModel.totalConsumptionToday - oFlowModel.totalConsumptionTodayPast);
 			const bState = iDifference > 0;
-			const sDifference = `${iDifference} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
+			const sDifference = `${iDifference.toFixed(2)} (${this.getView().getModel("i18n").getResourceBundle().getText("unitDay")})`;
 			this.FlowState.updateFlow({
 				dialogTileHeader: this.getView().getModel("i18n").getResourceBundle().getText("totalConsumption"),
 				dialogTileSubheader: this.getView().getModel("i18n").getResourceBundle().getText("last24Hours"),
@@ -411,7 +411,7 @@ sap.ui.define([
 				let prev = aFlows[i-1];
 				if (prev) {
 					let curr = aFlows[i];
-					let currConsumption = (((prev.flow + curr.flow) / 2) / 60) * ((curr.datetime.getTime() - prev.datetime.getTime()) / 1000); //diff time 
+					let currConsumption = (((prev.flow + curr.flow) / 2) / 60);// * ((curr.datetime.getTime() - prev.datetime.getTime()) / 1000); //diff time 
 					iTotal += currConsumption;
 				}
 			}

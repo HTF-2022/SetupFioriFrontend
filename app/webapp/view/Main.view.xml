@@ -30,32 +30,32 @@
 					<m:HBox class="sapUiMediumMarginBottom">
 						<m:GenericTile class="sapUiSmallMargin tileLayout graphBackground tileBorder" size="L" header="{i18n>totalConsumption}" subheader="{i18n>thisMonth}" press="pressTotalConsumptionMonth">
 							<m:TileContent unit="{i18n>unitMonth}" footer="">
-								<m:NumericContent value="{ path:'reg>/flow/totalConsumptionMonth', formatter:'' }" valueColor="{reg>/flow/totalConsumptionMonthValueState}" indicator="{reg>/flow/totalConsumptionMonthIndicator}" withMargin="false" />
+								<m:NumericContent value="{reg>/flow/totalConsumptionMonth}" valueColor="{reg>/flow/totalConsumptionMonthValueState}" indicator="{reg>/flow/totalConsumptionMonthIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
 						<m:GenericTile class="sapUiSmallMargin tileLayout graphBackground tileBorder" size="L" header="{i18n>totalConsumption}" subheader="{i18n>thisWeek}" press="pressTotalConsumptionWeek">
 							<m:TileContent unit="{i18n>unitWeek}" footer="">
-								<m:NumericContent value="{ path:'reg>/flow/totalConsumptionWeek', formatter:'' }" valueColor="{reg>/flow/totalConsumptionWeekValueState}" indicator="{reg>/flow/totalConsumptionWeekIndicator}" withMargin="false" />
+								<m:NumericContent value="{reg>/flow/totalConsumptionWeek}" valueColor="{reg>/flow/totalConsumptionWeekValueState}" indicator="{reg>/flow/totalConsumptionWeekIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
 						<m:GenericTile class="sapUiSmallMargin tileLayout graphBackground tileBorder" size="L" header="{i18n>totalConsumption}" subheader="{i18n>last24Hours}" press="pressTotalConsumptionToday">
 							<m:TileContent unit="{i18n>unitDay}" footer="">
-								<m:NumericContent value="{ path:'reg>/flow/totalConsumptionToday', formatter:'' }" valueColor="{reg>/flow/totalConsumptionTodayValueState}" indicator="{reg>/flow/totalConsumptionTodayIndicator}" withMargin="false" />
+								<m:NumericContent value="{reg>/flow/totalConsumptionToday}" valueColor="{reg>/flow/totalConsumptionTodayValueState}" indicator="{reg>/flow/totalConsumptionTodayIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
 						<m:GenericTile class="sapUiSmallMargin tileLayout graphBackground tileBorder" size="L" header="{i18n>averageConsumption}" subheader="{i18n>thisMonth}" press="pressAverageConsumptionMonth">
 							<m:TileContent unit="{i18n>unitDay}" footer="">
-								<m:NumericContent value="{ path: 'reg>/flow/averageConsumptionMonth', formatter:'' }" valueColor="{reg>/flow/averageConsumptionMonthValueState}" indicator="{reg>/flow/averageConsumptionMonthIndicator}" withMargin="false" />
+								<m:NumericContent value="{reg>/flow/averageConsumptionMonth}" valueColor="{reg>/flow/averageConsumptionMonthValueState}" indicator="{reg>/flow/averageConsumptionMonthIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
 						<m:GenericTile class="sapUiSmallMargin tileLayout graphBackground tileBorder" size="L" header="{i18n>averageConsumption}" subheader="{i18n>thisWeek}" press="pressAverageConsumptionWeek">
 							<m:TileContent unit="{i18n>unitDay}" footer="">
-								<m:NumericContent value="{ path: 'reg>/flow/averageConsumptionWeek', formatter:'' }" valueColor="{reg>/flow/averageConsumptionWeekValueState}" indicator="{reg>/flow/averageConsumptionWeekIndicator}" withMargin="false" />
+								<m:NumericContent value="{reg>/flow/averageConsumptionWeek}" valueColor="{reg>/flow/averageConsumptionWeekValueState}" indicator="{reg>/flow/averageConsumptionWeekIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
 						<m:GenericTile class="sapUiSmallMargin tileLayout graphBackground tileBorder" size="L" header="{i18n>averageConsumption}" subheader="{i18n>today}" press="pressAverageConsumptionToday">
 							<m:TileContent unit="{i18n>unitHours}" footer="">
-								<m:NumericContent value="{ path: 'reg>/flow/averageConsumptionToday', formatter:'' }" valueColor="{reg>/flow/averageConsumptionTodayValueState}" indicator="{reg>/flow/averageConsumptionTodayIndicator}" withMargin="false" />
+								<m:NumericContent value="{reg>/flow/averageConsumptionToday}" valueColor="{reg>/flow/averageConsumptionTodayValueState}" indicator="{reg>/flow/averageConsumptionTodayIndicator}" withMargin="false" />
 							</m:TileContent>
 						</m:GenericTile>
 						<m:VBox justifyContent="Center" alignContent="SpaceAround" alignItems="Center">
