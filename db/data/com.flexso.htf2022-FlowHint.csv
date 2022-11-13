@@ -1,13 +1,13 @@
 ID;state;message
-fcc68dd7-c262-4d9f-b834-f6f2f909d8b1;Error;Fix the leak bro!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fa2;Error;Maybe turn off the shower, it's been going since yesterday!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fa3;Error;You're draining the ocean dude!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fa4;Critical;Water the flowers with rainwater instead of tap water and watch them enjoy.
-7a9e7fdd-9ea5-42fd-825b-f16029a90fa5;Critical;Close the tap while brushing your teeth could make the difference.
-7a9e7fdd-9ea5-42fd-825b-f16029a90fa6;Critical;A 5 minute shower will do the job!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fa7;Neutral;You're good!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fa8;Neutral;You're good!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fb5;Neutral;You're good!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fb2;Good;Nature thanks you!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fb3;Good;You're an example!
-7a9e7fdd-9ea5-42fd-825b-f16029a90fb4;Good;Carefully, he's a hero!
+1;Error;Fix the leak bro!
+2;Error;Maybe turn off the shower, it's been going since yesterday!
+3;Error;You're draining the ocean dude!
+4;Critical;Water the flowers with rainwater instead of tap water and watch them enjoy.
+5;Critical;Close the tap while brushing your teeth could make the difference.
+6;Critical;A 5 minute shower will do the job!
+7;Neutral;You're good!
+8;Neutral;You're good!
+9;Neutral;You're good!
+10;Good;Nature thanks you!
+11;Good;You're an example!
+12;Good;Carefully, he's a hero!
